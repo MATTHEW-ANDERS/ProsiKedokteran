@@ -73,3 +73,36 @@ input, select { width: 100%; padding: 10px; border: 1.5px solid #f5f5f5; border-
     font-size: 18px;
     border-bottom: 2px solid var(--primary);
 }
+
+/* Update desain tombol opsi agar mendukung teks bertingkat */
+.opt-btn {
+    display: flex;
+    flex-direction: column; /* Judul di atas, deskripsi di bawah */
+    align-items: flex-start; /* Teks rata kiri agar mudah dibaca */
+    text-align: left;
+    padding: 15px 20px;
+    gap: 4px;
+    line-height: 1.4;
+}
+
+/* Gaya untuk Kata Kunci (Judul Opsi) */
+.opt-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text);
+    display: block;
+}
+
+/* Gaya untuk Keterangan (Detail Opsi) */
+.opt-desc {
+    font-weight: 400;
+    font-size: 12px;
+    color: #888;
+    display: block;
+}
+
+/* Saat tombol dipilih, pastikan teks keterangan juga berubah jadi putih */
+.opt-btn.selected .opt-title,
+.opt-btn.selected .opt-desc {
+    color: white !important;
+}
