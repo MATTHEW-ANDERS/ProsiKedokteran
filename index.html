@@ -135,30 +135,49 @@
 
     <script>
         const questions = [
+<<<<<<< Updated upstream
             { text: "Berapa Berat Badan Anda hari ini? (kg)", type: "FITB" },
             { text: "Bagaimana Pola Makan Anda?", type: "MC", options: ["Teratur", "Kurang Teratur", "Buruk"] },
             { text: "Berapa Kali Anda Muntah hari ini?", type: "MC", options: ["Tidak Pernah", "1-3 Kali", "> 3 Kali"] },
             { text: "Apakah ada keluhan mual?", type: "MC", options: ["Ya", "Tidak"] }
+=======
+            { id: "bb", text: "Berapa Berat Badan Anda hari ini? (kg)", type: "FITB", inputType: "number" },
+            { 
+                id: "pola_makan", 
+                text: "Bagaimana Pola Makan Anda? (Bisa pilih lebih dari 1)", 
+                type: "MC_MULTIPLE", 
+                options: [
+                    "Gizi Seimbang: Makan 3x sehari dengan komposisi lengkap",
+                    "Kurang Serat: Sering melewatkan sayur dan buah-buahan",
+                    "Tinggi Gula/Garam: Sering konsumsi makanan instan/junk food",
+                    "Tidak Teratur: Sering melewatkan waktu makan",
+                    "Porsi Kecil: Makan sering tapi porsi sangat sedikit"
+                ] 
+            },
+            { 
+                id: "protein", 
+                text: "Apakah Anda Mengkonsumsi Protein? (Bisa pilih lebih dari 1)", 
+                type: "MC_MULTIPLE", 
+                options: ["Ayam", "Sapi", "Ikan", "Telur", "Tahu/Tempe"] 
+            },
+            { id: "obat", text: "Obat Apa Yang Sedang Anda Dikonsumsi?", type: "FITB", inputType: "text" },
+            { id: "suplemen", text: "Apakah Sudah Konsumsi Suplemen?", type: "MC", options: ["Ya", "Tidak"] },
+            { id: "mual", text: "Apakah ada keluhan mual?", type: "MC", options: ["Ya", "Tidak"] },
+            { id: "muntah", text: "Berapa Kali Anda Muntah Hari Ini?", type: "MC", options: ["Tidak Pernah", "1-3 Kali", "> 3 Kali"] },
+            { 
+                id: "olahraga", 
+                text: "Apakah Anda Berolahraga? (Bisa pilih lebih dari 1)", 
+                type: "MC_MULTIPLE", 
+                options: ["Tidak Berolahraga", "Kegiatan Rumah Tangga", "Lari", "Senam", "Angkat Beban", "Lainnya"],
+                followUpTrigger: "Lainnya", 
+                followUpText: "Sebutkan jenis olahraga lainnya:" 
+            },
+            { id: "domisili", text: "Apakah Domisili Masih di Tempat yang Sama?", type: "MC", options: ["Ya", "Tidak"] }
+>>>>>>> Stashed changes
         ];
 
         let currentStep = 0;
-
-        function switchAuth(type) {
-            document.getElementById('loginForm').classList.toggle('hidden', type === 'regis');
-            document.getElementById('regisForm').classList.toggle('hidden', type === 'login');
-            document.getElementById('tabLogin').classList.toggle('active', type === 'login');
-            document.getElementById('tabRegis').classList.toggle('active', type === 'regis');
-        }
-
-        function login() {
-            showPage('dashboardPage');
-            document.getElementById('mainNav').classList.remove('hidden');
-        }
-
-        function logout() {
-            document.getElementById('mainNav').classList.add('hidden');
-            showPage('authPage');
-        }
+        let tempAnswers = {}; // Menyimpan jawaban sementara untuk multiselect
 
         function showPage(pageId) {
             const pages = ['authPage', 'dashboardPage', 'kuesionerPage', 'profilePage', 'historyPage'];
@@ -171,16 +190,52 @@
 
         function startKuesioner() {
             currentStep = 0;
+            tempAnswers = {}; 
             updateKuesionerUI();
             showPage('kuesionerPage');
         }
 
+<<<<<<< Updated upstream
+=======
+        // Fungsi untuk memilih/batal memilih pada MC_MULTIPLE
+        function toggleOption(btn, opt) {
+            const qId = questions[currentStep].id;
+            if (!tempAnswers[qId]) tempAnswers[qId] = [];
+
+            if (tempAnswers[qId].includes(opt)) {
+                // Hapus jika sudah ada
+                tempAnswers[qId] = tempAnswers[qId].filter(item => item !== opt);
+                btn.classList.remove('selected');
+            } else {
+                // Tambahkan jika belum ada
+                tempAnswers[qId].push(opt);
+                btn.classList.add('selected');
+            }
+
+            // Tampilkan follow up jika "Lainnya" dipilih
+            const q = questions[currentStep];
+            if (q.followUpTrigger) {
+                const extraContainer = document.getElementById('extraInputContainer');
+                if (tempAnswers[qId].includes(q.followUpTrigger)) {
+                    extraContainer.innerHTML = `
+                        <p style="font-size: 14px; margin: 15px 0 10px; color: #666;">${q.followUpText}</p>
+                        <input type="text" class="big-input" id="followUpInput" placeholder="Ketik di sini...">
+                    `;
+                } else {
+                    extraContainer.innerHTML = '';
+                }
+            }
+        }
+
+>>>>>>> Stashed changes
         function updateKuesionerUI() {
             const q = questions[currentStep];
             document.getElementById('questionText').innerText = q.text;
             const inputArea = document.getElementById('inputArea');
+            const btnNext = document.getElementById('btnNext');
             inputArea.innerHTML = '';
 
+<<<<<<< Updated upstream
             if(q.type === "FITB") {
                 inputArea.innerHTML = `<input type="number" class="big-input" placeholder="00">`;
             } else {
@@ -189,6 +244,29 @@
                 });
             }
 
+=======
+            if (q.type === "FITB") {
+                inputArea.innerHTML = `<input type="${q.inputType || 'text'}" class="big-input" id="answerInput" placeholder="Ketik di sini...">`;
+                btnNext.style.display = "block";
+            } 
+            else if (q.type === "MC_MULTIPLE") {
+                q.options.forEach(opt => {
+                    const isSelected = tempAnswers[q.id]?.includes(opt) ? 'selected' : '';
+                    inputArea.innerHTML += `<button class="opt-btn ${isSelected}" onclick="toggleOption(this, '${opt}')">${opt}</button>`;
+                });
+                inputArea.innerHTML += `<div id="extraInputContainer"></div>`;
+                btnNext.style.display = "block"; // Selalu muncul untuk konfirmasi pilihan ganda
+            } 
+            else {
+                // MC Biasa (Single Choice)
+                q.options.forEach(opt => {
+                    inputArea.innerHTML += `<button class="opt-btn" onclick="nextStep()">${opt}</button>`;
+                });
+                btnNext.style.display = "none"; // Langsung next saat diklik
+            }
+
+            // Progress Bar
+>>>>>>> Stashed changes
             const progress = ((currentStep + 1) / questions.length) * 100;
             document.getElementById('progressBar').style.width = progress + '%';
             document.getElementById('stepIndicator').innerText = `Pertanyaan ${currentStep + 1} dari ${questions.length}`;
@@ -201,7 +279,7 @@
                 currentStep++;
                 updateKuesionerUI();
             } else {
-                alert("Berhasil disimpan!");
+                alert("Data Berhasil Disimpan!");
                 showPage('dashboardPage');
             }
         }
@@ -211,6 +289,16 @@
                 currentStep--;
                 updateKuesionerUI();
             }
+        }
+        
+        // Fungsi login & logout tetap sama
+        function login() { showPage('dashboardPage'); document.getElementById('mainNav').classList.remove('hidden'); }
+        function logout() { document.getElementById('mainNav').classList.add('hidden'); showPage('authPage'); }
+        function switchAuth(type) {
+            document.getElementById('loginForm').classList.toggle('hidden', type === 'regis');
+            document.getElementById('regisForm').classList.toggle('hidden', type === 'login');
+            document.getElementById('tabLogin').classList.toggle('active', type === 'login');
+            document.getElementById('tabRegis').classList.toggle('active', type === 'regis');
         }
     </script>
 </body>
