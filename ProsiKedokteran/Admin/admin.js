@@ -136,18 +136,5 @@ function exportToCSV() {
     document.body.removeChild(link);
 }
 
-function logout() {
-    const konfirmasi = confirm("Apakah Anda yakin ingin keluar dari Dashboard Admin?");
-    
-    if (konfirmasi) {
-        // Coba ganti bagian ini:
-        // Jika file admin.html ada di DALAM folder "admin":
-        window.location.href = "../index.html"; 
-        
-        // ATAU, jika file admin.html ada di LUAR (sejajar dengan index.html):
-        // window.location.href = "index.html"; 
-    }
-}
-
 // Panggil fungsi render saat halaman dibuka
 window.onload = renderTable;
