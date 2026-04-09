@@ -138,3 +138,13 @@ function exportToCSV() {
 
 // Panggil fungsi render saat halaman dibuka
 window.onload = renderTable;
+
+// ==========================================
+// FUNGSI KELUAR DARI DASHBOARD ADMIN
+// ==========================================
+function logoutAdmin() {
+    if (confirm("Yakin ingin keluar dari Dashboard Admin?")) {
+        // Menggunakan window.location.replace agar user tidak bisa klik tombol "Back" di browser
+        window.location.replace("index.html");
+    }
+}

@@ -21,6 +21,10 @@
     <div class="container">
 
         <div id="authPage" class="card">
+            <div class="auth-header">
+                <h1 class="auth-title">🌸 Sayang Bunda</h1>
+                <p class="auth-subtitle">Sistem Informasi Pemantauan Ibu Hamil</p>
+            </div>
             <div class="auth-tabs">
                 <button id="tabLogin" class="tab-btn active" onclick="switchAuth('login')">Masuk</button>
                 <button id="tabRegis" class="tab-btn" onclick="switchAuth('regis')">Daftar Baru</button>
@@ -103,14 +107,6 @@
                     <img id="flowerImage" src="../ProsiKedokteran/assets/bunga-tahap-1.png" alt="Bunga Progres" class="flower-image">
                     <p id="flowerProgresText" class="flower-progres-text">Progres Bunga Anda: 0% (Belum Ada Progres)</p>
                 </div>
-
-                <div class="wallet-card">
-                    <span class="wallet-icon">💰</span>
-                    <div class="wallet-info">
-                        <p>Dompet Poin</p>
-                        <h2 id="pointsDisplay">0</h2>
-                    </div>
-                </div>
             </div> 
             
             <div class="grid-menu-simple">
@@ -118,14 +114,14 @@
                     <span class="icon">📝</span>
                     <div>
                         <h3>Isi Kuesioner</h3>
-                        <p>Update rutin 2 mingguan (+50 Poin)</p>
+                        <p>Update rutin 2 mingguan</p>
                     </div>
                 </div>
                 <div class="menu-item-big" onclick="showPage('historyPage')">
                     <span class="icon">📊</span>
                     <div>
-                        <h3>Histori Poin</h3>
-                        <p>Lihat rekapan aktivitas Anda</p>
+                        <h3>Riwayat Kuesioner</h3>
+                        <p>Lihat rekam jejak aktivitas Anda</p>
                     </div>
                 </div>
             </div>
@@ -146,6 +142,20 @@
                 <button id="btnPrev" class="btn-outline" onclick="prevStep()">Kembali</button>
                 <button id="btnNext" class="btn" onclick="nextStep()">Selanjutnya</button>
             </div>
+        </div>
+
+        <div id="historyPage" class="hidden card">
+            <h2 style="font-size: 18px; margin-top: 0;">Riwayat Pengisian Kuesioner</h2>
+            <ul id="historyList" class="history-list">
+                </ul>
+
+            <div class="empty-state" id="emptyHistoryState">
+                <span style="font-size: 50px;">📂</span>
+                <h3>Belum Ada Riwayat</h3>
+                <p>Data pengisian kuesioner Anda akan muncul di sini.</p>
+            </div>
+            
+            <button class="btn-outline" style="margin-top:20px;" onclick="showPage('dashboardPage')">Kembali ke Dashboard</button>
         </div>
 
         <div id="profilePage" class="hidden card">
@@ -175,20 +185,6 @@
                 <button class="btn" style="background-color: #ff4d4d;" onclick="logout()">Keluar Aplikasi</button>
                 <button class="btn-outline" style="border-color:#ff4d4d; color:#ff4d4d;" onclick="resetData()">Reset Semua Data (Demo)</button>
             </div>
-        </div>
-
-        <div id="historyPage" class="hidden card">
-            <h2 style="font-size: 18px; margin-top: 0;">Riwayat Aktivitas & Poin</h2>
-            <ul id="historyList" class="history-list">
-                </ul>
-
-            <div class="empty-state" id="emptyHistoryState">
-                <span style="font-size: 50px;">📂</span>
-                <h3>Belum Ada Histori</h3>
-                <p>Data poin akan muncul di sini.</p>
-            </div>
-            
-            <button class="btn-outline" style="margin-top:20px;" onclick="showPage('dashboardPage')">Kembali ke Dashboard</button>
         </div>
 
     </div>

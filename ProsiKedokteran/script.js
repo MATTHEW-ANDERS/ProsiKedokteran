@@ -21,12 +21,11 @@ const questions = [
 let currentStep = 0;
 let tempAnswers = {}; 
 
-// --- Variabel Bunga & Dompet (Terhubung dengan LocalStorage) ---
+// --- Variabel Bunga & Riwayat Kuesioner (Terhubung dengan LocalStorage) ---
 let questionnaireFilledCount = parseInt(localStorage.getItem('flowerProgress')) || 0; 
 const targetFlowerCount = 6; 
 
-let userPoints = parseInt(localStorage.getItem('userPoints')) || 0;
-let pointHistory = JSON.parse(localStorage.getItem('pointHistory')) || [];
+let questionnaireHistory = JSON.parse(localStorage.getItem('questionnaireHistory')) || [];
 // ---------------------------------------------------------------
 
 function showPage(pageId) {
@@ -109,8 +108,8 @@ function nextStep() {
         showPage('dashboardPage');
         
         // --- LOGIKA SETELAH MENGISI KUESIONER ---
-        // 1. Tambah Poin + Catat Histori
-        earnPoints(50, "Selesai Mengisi Kuesioner Rutin");
+        // 1. Catat riwayat pengisian
+        recordHistory();
         
         // 2. Tumbuhkan Bunga
         completeQuestionnaireSim();
@@ -125,65 +124,58 @@ function prevStep() {
 }
 
 // ==========================================
-// FUNGSI DOMPET & HISTORI POIN
+// FUNGSI RIWAYAT PENGISIAN KUESIONER
 // ==========================================
 
-function updateWalletUI() {
-    // 1. Perbarui Angka di Dashboard
-    document.getElementById('pointsDisplay').innerText = userPoints;
+function recordHistory() {
+    const now = new Date();
+    const dateString = now.toLocaleDateString('id-ID') + ' ' + now.toLocaleTimeString('id-ID');
+    
+    // Masukkan ke array histori paling atas
+    questionnaireHistory.unshift({
+        activity: "Menyelesaikan Kuesioner Rutin",
+        date: dateString
+    });
+    
+    // Batasi histori maksimal 15 riwayat terakhir agar ringan
+    if (questionnaireHistory.length > 15) {
+        questionnaireHistory.pop();
+    }
+    
+    // Simpan ke Browser
+    localStorage.setItem('questionnaireHistory', JSON.stringify(questionnaireHistory));
+    
+    // Perbarui Tampilan List
+    updateHistoryUI();
+}
 
-    // 2. Perbarui Daftar Histori
+function updateHistoryUI() {
     const historyList = document.getElementById('historyList');
     const emptyState = document.getElementById('emptyHistoryState');
     
     historyList.innerHTML = '';
 
-    if (pointHistory.length === 0) {
+    if (questionnaireHistory.length === 0) {
         historyList.style.display = 'none';
         emptyState.style.display = 'block';
     } else {
         historyList.style.display = 'block';
         emptyState.style.display = 'none';
         
-        pointHistory.forEach(item => {
+        questionnaireHistory.forEach(item => {
             const li = document.createElement('li');
             li.className = 'history-item';
+            // Menggunakan ikon centang (✔️) menggantikan tulisan poin
             li.innerHTML = `
                 <div class="history-info">
                     <h4>${item.activity}</h4>
                     <p>${item.date}</p>
                 </div>
-                <div class="history-points">+${item.points}</div>
+                <div style="font-size: 18px; color: #2ecc71;">✔️</div>
             `;
             historyList.appendChild(li);
         });
     }
-}
-
-function earnPoints(amount, activityName) {
-    userPoints += amount; // Tambah saldo poin
-    
-    const now = new Date();
-    const dateString = now.toLocaleDateString('id-ID') + ' ' + now.toLocaleTimeString('id-ID');
-    
-    // Masukkan ke array histori paling atas
-    pointHistory.unshift({
-        points: amount,
-        activity: activityName,
-        date: dateString
-    });
-    
-    // Batasi histori maksimal 15 riwayat terakhir agar ringan
-    if (pointHistory.length > 15) {
-        pointHistory.pop();
-    }
-    
-    // Simpan ke Browser
-    localStorage.setItem('userPoints', userPoints);
-    localStorage.setItem('pointHistory', JSON.stringify(pointHistory));
-    
-    // Perbarui Tampilan
-    updateWalletUI();
 }
 
 
@@ -221,14 +213,12 @@ function updateFlowerGrowthUI() {
     flowerImage.src = imageSrc;
     flowerProgresText.innerText = text;
 
-    // Bonus jika bunga mekar pertama kali (agar poin tidak berulang terus saat di 100%)
+    // Notifikasi jika bunga mekar pertama kali
     if (questionnaireFilledCount === targetFlowerCount && percentage === 100) {
-        // Cek apakah bonus bunga mekar sudah diberikan (simpan state di localStorage)
         const bonusClaimed = localStorage.getItem('flowerBonusClaimed');
         if(!bonusClaimed) {
             setTimeout(() => {
-                alert("Selamat! Bunga telah mekar sepenuhnya (100%) dan Anda mendapatkan Bonus Poin! 🌸🎉");
-                earnPoints(100, "Bonus Bunga Mekar 100%"); // Kasih poin tambahan
+                alert("Selamat! Bunga telah mekar sepenuhnya (100%)! 🌸🎉");
                 localStorage.setItem('flowerBonusClaimed', 'true');
             }, 300); 
         }
@@ -251,44 +241,43 @@ function completeQuestionnaireSim() {
 // Inisialisasi Saat Buka Aplikasi
 // ==========================================
 function initializeDashboard() {
-    updateWalletUI();       // Muat poin
+    updateHistoryUI(); // Muat riwayat pengisian kuesioner
     updateFlowerGrowthUI(); // Muat gambar bunga
 }
 
 initializeDashboard();
 
-// Fungsi login & logout
-// Fungsi login dengan pemisah Role (User vs Admin)
+// ==========================================
+// Fungsi login & logout 
+// ==========================================
 function login() { 
-    // Ambil nilai yang diketik di kolom input
     const userVal = document.getElementById('loginUser').value;
     const passVal = document.getElementById('loginPass').value;
 
-    // Cek apakah input kosong
     if (userVal === "" || passVal === "") {
         alert("Mohon isi Username dan Kata Sandi terlebih dahulu!");
         return;
     }
 
-    // Simulasi Cek Role Admin
     if (userVal.toLowerCase() === "admin" && passVal === "admin123") {
         alert("Login berhasil sebagai Admin!");
-        // Arahkan ke file admin (pastikan file admin.html ada di folder yang sama)
-        window.location.href = "admin.html"; 
+        window.location.href = "admin_baru.html"; 
     } 
-    // Simulasi Cek Role User (Bunda)
     else {
         alert(`Selamat datang, Bunda ${userVal}!`);
-        // Simpan nama user sementara untuk ditampilkan di dashboard jika mau
         showPage('dashboardPage'); 
         document.getElementById('mainNav').classList.remove('hidden');
         
-        // Opsional: Kosongkan form setelah login
         document.getElementById('loginUser').value = "";
         document.getElementById('loginPass').value = "";
     }
 }
-function logout() { document.getElementById('mainNav').classList.add('hidden'); showPage('authPage'); }
+
+function logout() { 
+    document.getElementById('mainNav').classList.add('hidden'); 
+    showPage('authPage'); 
+}
+
 function switchAuth(type) {
     document.getElementById('loginForm').classList.toggle('hidden', type === 'regis');
     document.getElementById('regisForm').classList.toggle('hidden', type === 'login');
@@ -296,15 +285,13 @@ function switchAuth(type) {
     document.getElementById('tabRegis').classList.toggle('active', type === 'regis');
 }
 
-// Fungsi tambahan untuk reset data saat pengetesan
 function resetData() {
-    if(confirm("Apakah Anda yakin ingin mereset dompet poin dan progres bunga? (Hanya untuk keperluan demo/testing)")){
+    if(confirm("Apakah Anda yakin ingin mereset progres bunga dan riwayat kuesioner? (Hanya untuk keperluan demo/testing)")){
         localStorage.clear();
-        userPoints = 0;
-        pointHistory = [];
         questionnaireFilledCount = 0;
+        questionnaireHistory = [];
         
-        updateWalletUI();
+        updateHistoryUI();
         updateFlowerGrowthUI();
         
         alert("Semua data telah direset menjadi 0.");
