@@ -173,7 +173,14 @@
             <div class="card gamification">
                 <h3>Kebun Sehatmu</h3>
                 <p>Isi kuesioner rutin untuk menumbuhkan bungamu!</p>
-                <div class="flower-stage" id="flower-emoji">🌱</div>
+                <style>
+                    @keyframes pulseBreathe {
+                        0% { transform: scale(1); }
+                        50% { transform: scale(1.15); }
+                        100% { transform: scale(1); }
+                    }
+                </style>
+                <div class="flower-stage" id="flower-emoji" style="animation: pulseBreathe 2s infinite ease-in-out; display: inline-block;">🌱</div>
                 <div class="progress-text" id="flower-status">Status: Bibit Baru</div>
             </div>
 
