@@ -10,95 +10,147 @@
 
 <body>
 
-    <div id="view-login" class="view-section active container-mobile login-layout" style="background: linear-gradient(135deg, var(--primary) 0%, #ff527b 100%); justify-content: center; padding-top: 40px; overflow-y: auto;">
-        <div class="login-hero" style="text-align: center; color: white; width: 100%; animation: slideUpFade 0.6s ease-out; flex-shrink: 0; margin-bottom: 30px;">
-            <div style="font-size: 5rem; margin-bottom: 10px; animation: bouncePop 1s ease-out;">🌸</div>
-            <h1 style="font-size: 2.2rem; font-weight: 800; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Sayang Bunda</h1>
-            <p style="font-size: 0.95rem; opacity: 0.9; margin-top: 5px; font-weight: 600;">Solusi Kehamilan Sehat & Bahagia</p>
-        </div>
-
-        <div class="auth-card" style="margin: 0; border-radius: 35px; width: 90%; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); padding: 35px 25px 35px; background: white; display: flex; flex-direction: column; margin-bottom: 40px;">
-            
-            <div class="auth-tabs" style="background: #f4f4f4; border-radius: 18px; padding: 6px; margin-bottom: 25px;">
-                <button class="tab-btn active" style="border-radius: 14px; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.05); color: var(--primary);">Masuk</button>
-                <button class="tab-btn inactive" onclick="switchView('register')" style="border-radius: 14px; background: transparent; color: #888;">Daftar Baru</button>
-            </div>
-
-            <form id="form-login" onsubmit="handleLogin(event)" style="display: flex; flex-direction: column;">
-                <div class="input-group" style="position: relative; margin-bottom: 20px;">
-                    <label style="margin-bottom: 8px; font-size: 0.9rem;">Username</label>
-                    <div style="position: relative;">
-                        <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: #bbb;">👤</span>
-                        <input type="text" id="login-username" placeholder="Masukkan username" required style="padding-left: 45px; width: 100%; height: 50px; border-radius: 15px; font-size: 1rem;">
-                    </div>
-                </div>
-                <div class="input-group" style="position: relative; margin-bottom: 15px;">
-                    <label style="margin-bottom: 8px; font-size: 0.9rem;">Kata Sandi</label>
-                    <div style="position: relative;">
-                        <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: #bbb;">🔒</span>
-                        <input type="password" id="login-password" placeholder="••••••••" required style="padding-left: 45px; width: 100%; height: 50px; border-radius: 15px; font-size: 1rem;">
-                    </div>
-                </div>
-                
-                <div style="text-align: right; margin-bottom: 25px;">
-                    <a href="#" style="color: var(--primary); font-size: 0.85rem; font-weight: 800; text-decoration: none; display: inline-block;">Lupa kata sandi?</a>
-                </div>
-
-                <div style="margin-top: 10px;">
-                    <button type="submit" class="btn-pink" style="padding: 16px; border-radius: 18px; font-size: 1.15rem; box-shadow: 0 8px 20px rgba(255, 127, 166, 0.3); width: 100%;">Masuk Sekarang 🚀</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div id="view-register" class="view-section hidden container-mobile login-layout" style="background: linear-gradient(135deg, var(--primary) 0%, #ff527b 100%); justify-content: flex-start; padding-top: 30px; overflow-y: auto;">
-        <div class="login-hero" style="text-align: center; color: white; width: 100%; animation: slideUpFade 0.6s ease-out; flex-shrink: 0; margin-bottom: 20px;">
+    <div id="view-login" class="view-section active container-mobile login-layout"
+        style="background: linear-gradient(135deg, var(--primary) 0%, #ff527b 100%); justify-content: flex-start; padding-top: 30px; overflow-y: hidden;">
+        <div class="login-hero"
+            style="text-align: center; color: white; width: 100%; flex-shrink: 0; margin-bottom: 20px;">
             <div style="font-size: 3.5rem; margin-bottom: 5px;">🌸</div>
-            <h1 style="font-size: 1.8rem; font-weight: 800; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Daftar Akun</h1>
+            <h1 id="auth-title"
+                style="font-size: 2rem; font-weight: 800; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.3s;">
+                Sayang Bunda</h1>
+            <p style="font-size: 0.95rem; opacity: 0.9; margin-top: 5px; font-weight: 600;">Sistem Monitoring
+                KesehatanWanita</p>
         </div>
 
-        <div class="auth-card" style="margin: 0; border-radius: 35px 35px 0 0; width: 100%; max-width: 100%; box-shadow: 0 -10px 25px rgba(0,0,0,0.1); padding: 30px 25px 40px; background: white; display: flex; flex-direction: column;">
-            
-            <div class="auth-tabs" style="background: #f4f4f4; border-radius: 18px; padding: 6px; margin-bottom: 20px;">
-                <button class="tab-btn inactive" onclick="switchView('login')" style="border-radius: 14px; background: transparent; color: #888;">Masuk</button>
-                <button class="tab-btn active" style="border-radius: 14px; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.05); color: var(--primary);">Daftar Baru</button>
+        <div class="auth-card"
+            style="margin: 0; border-radius: 35px 35px 0 0; width: 100%; max-width: 100%; height: 65vh; box-shadow: 0 -10px 25px rgba(0,0,0,0.1); padding: 30px 25px 20px; background: white; display: flex; flex-direction: column;">
+
+            <div class="auth-tabs"
+                style="position: relative; background: #f4f4f4; border-radius: 18px; padding: 6px; margin-bottom: 20px; display: flex;">
+                <div id="tab-slider"
+                    style="position: absolute; top: 6px; left: 6px; bottom: 6px; width: calc(50% - 6px); background: white; border-radius: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
+                </div>
+                <button class="tab-btn" id="btn-tab-login" onclick="toggleAuthMode('login')"
+                    style="flex: 1; position: relative; z-index: 1; background: transparent; color: var(--primary); font-weight: 800; border-radius: 14px;">Masuk</button>
+                <button class="tab-btn" id="btn-tab-register" onclick="toggleAuthMode('register')"
+                    style="flex: 1; position: relative; z-index: 1; background: transparent; color: #888; font-weight: 800; border-radius: 14px;">Daftar
+                    Baru</button>
             </div>
 
-            <form id="form-register" style="flex: 1; display: flex; flex-direction: column;">
-                <div style="max-height: 45vh; overflow-y: auto; padding-right: 5px; margin-bottom: 15px; flex-grow: 1;">
-                    <div class="input-group"><label>Nama Lengkap</label> <input type="text" placeholder="Masukkan nama sesui KTP..." required></div>
-                    <div class="input-group"><label>Username</label> <input type="text" placeholder="Buat username ringkas..." required></div>
-                    <div class="input-group"><label>Kata Sandi</label> <input type="password" placeholder="Buat kata sandi..." required></div>
-                    <div class="input-group"><label>Berat Badan Awal (kg)</label> <input type="number" placeholder="Contoh: 55" required></div>
-                    <div class="input-group"><label>Tinggi Badan (cm)</label> <input type="number" placeholder="Contoh: 160" required></div>
-                    <div class="input-group">
-                        <label>Status Perkawinan</label>
-                        <select><option>Menikah</option><option>Belum Menikah</option><option>Cerai</option></select>
-                    </div>
-                    <div class="input-group"><label>Pekerjaan</label> <input type="text" placeholder="Contoh: Pegawai Swasta / Ibu Rumah Tangga" required></div>
-                    <div class="input-group"><label>Riwayat Hamil / Keguguran</label> <input type="text" placeholder="Contoh: Hamil 0 kali, Keguguran 0 kali" required></div>
-                    <div class="input-group"><label>Alamat Lengkap</label> <input type="text" placeholder="Masukkan alamat lengkap" required></div>
-                    <div class="input-group"><label>No. HP</label> <input type="tel" placeholder="08xxxxxxxxxx" required></div>
-                    <div class="input-group"><label>Suku / Etnis</label> <input type="text" placeholder="Contoh: Sunda, Jawa, dll" required></div>
-                    <div class="input-group">
-                        <label>Tingkat Pendidikan</label>
-                        <select><option>SD/Sederajat</option><option>SMP/Sederajat</option><option>SMA/Sederajat</option><option>Diploma / Sarjana</option></select>
-                    </div>
-                    <div class="input-group">
-                        <label>Orang Serumah</label>
-                        <select><option>1-2 Orang</option><option>3-5 Orang</option><option>Lebih dari 5 Orang</option></select>
-                    </div>
-                    <div class="input-group">
-                        <label>Agama</label>
-                        <select><option>Islam</option><option>Kristen</option><option>Katolik</option><option>Hindu</option><option>Buddha</option><option>Konghucu</option></select>
-                    </div>
-                    <div class="input-group" style="padding-bottom: 20px;"><label>Email (Opsional)</label> <input type="email" placeholder="nama@email.com"></div>
+            <div style="flex: 1; position: relative; overflow: hidden;">
+                <!-- Wrapper Flex Container -->
+                <div id="auth-sliding-container"
+                    style="display: flex; width: 200%; height: 100%; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
+
+                    <!-- Form 1: LOGIN -->
+                    <form id="form-login" onsubmit="handleLogin(event)"
+                        style="width: 50%; padding-right: 10px; display: flex; flex-direction: column;">
+                        <div class="input-group" style="position: relative; margin-bottom: 20px;">
+                            <label style="margin-bottom: 8px; font-size: 0.9rem;">Username</label>
+                            <div style="position: relative;">
+                                <span
+                                    style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: #bbb;">👤</span>
+                                <input type="text" id="login-username" placeholder="Masukkan username" required
+                                    style="padding-left: 45px; width: 100%; height: 50px; border-radius: 15px; font-size: 1rem;">
+                            </div>
+                        </div>
+                        <div class="input-group" style="position: relative; margin-bottom: 15px;">
+                            <label style="margin-bottom: 8px; font-size: 0.9rem;">Kata Sandi</label>
+                            <div style="position: relative;">
+                                <span
+                                    style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: #bbb;">🔒</span>
+                                <input type="password" id="login-password" placeholder="••••••••" required
+                                    style="padding-left: 45px; width: 100%; height: 50px; border-radius: 15px; font-size: 1rem;">
+                            </div>
+                        </div>
+
+                        <div style="text-align: right; margin-bottom: 25px;">
+                            <a href="#"
+                                style="color: var(--primary); font-size: 0.85rem; font-weight: 800; text-decoration: none; display: inline-block;">Lupa
+                                kata sandi?</a>
+                        </div>
+
+                        <div style="margin-top: 10px;">
+                            <button type="submit" class="btn-pink"
+                                style="padding: 16px; border-radius: 18px; font-size: 1.15rem; box-shadow: 0 8px 20px rgba(255, 127, 166, 0.3); width: 100%;">Masuk
+                                Sekarang 🚀</button>
+                        </div>
+                    </form>
+
+                    <!-- Form 2: REGISTER -->
+                    <form id="form-register"
+                        style="width: 50%; padding-left: 10px; display: flex; flex-direction: column; overflow-y: auto;">
+                        <div style="flex: 1; padding-right: 5px; margin-bottom: 15px;">
+                            <div class="input-group"><label>Nama Lengkap</label> <input type="text"
+                                    placeholder="Masukkan nama sesui KTP..." required></div>
+                            <div class="input-group"><label>Username</label> <input type="text"
+                                    placeholder="Buat username ringkas..." required></div>
+                            <div class="input-group"><label>Kata Sandi</label> <input type="password"
+                                    placeholder="Buat kata sandi..." required></div>
+                            <div class="input-group"><label>Berat Badan Awal (kg)</label> <input type="number"
+                                    placeholder="Contoh: 55" required></div>
+                            <div class="input-group"><label>Tinggi Badan (cm)</label> <input type="number"
+                                    placeholder="Contoh: 160" required></div>
+                            <div class="input-group">
+                                <label>Status Perkawinan</label>
+                                <select>
+                                    <option>Menikah</option>
+                                    <option>Belum Menikah</option>
+                                    <option>Cerai</option>
+                                </select>
+                            </div>
+                            <div class="input-group"><label>Pekerjaan</label> <input type="text"
+                                    placeholder="Contoh: Pegawai Swasta / Ibu Rumah Tangga" required></div>
+                            <div class="input-group"><label>Riwayat Hamil / Keguguran</label> <input type="text"
+                                    placeholder="Contoh: Hamil 0 kali, Keguguran 0 kali" required></div>
+                            <div class="input-group"><label>Alamat Lengkap</label> <input type="text"
+                                    placeholder="Masukkan alamat lengkap" required></div>
+                            <div class="input-group"><label>No. HP</label> <input type="tel" placeholder="08xxxxxxxxxx"
+                                    required></div>
+                            <div class="input-group"><label>Suku / Etnis</label> <input type="text"
+                                    placeholder="Contoh: Sunda, Jawa, dll" required></div>
+                            <div class="input-group">
+                                <label>Tingkat Pendidikan</label>
+                                <select>
+                                    <option>SD/Sederajat</option>
+                                    <option>SMP/Sederajat</option>
+                                    <option>SMA/Sederajat</option>
+                                    <option>Diploma / Sarjana</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>Orang Serumah</label>
+                                <select>
+                                    <option>1-2 Orang</option>
+                                    <option>3-5 Orang</option>
+                                    <option>Lebih dari 5 Orang</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>Agama</label>
+                                <select>
+                                    <option>Islam</option>
+                                    <option>Kristen</option>
+                                    <option>Katolik</option>
+                                    <option>Hindu</option>
+                                    <option>Buddha</option>
+                                    <option>Konghucu</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="padding-bottom: 20px;"><label>Email (Opsional)</label>
+                                <input type="email" placeholder="nama@email.com">
+                            </div>
+                        </div>
+
+                        <div style="flex-shrink: 0; padding-bottom: 10px;">
+                            <button type="button" class="btn-pink"
+                                style="padding: 16px; border-radius: 15px; font-size: 1.1rem; box-shadow: 0 8px 15px rgba(255, 127, 166, 0.3); width: 100%;"
+                                onclick="alert('Registrasi Berhasil! Silakan Login.'); toggleAuthMode('login')">Daftar
+                                Akun 🎉</button>
+                        </div>
+                    </form>
                 </div>
-                
-                <div style="flex-shrink: 0; padding-bottom: 10px;">
-                    <button type="button" class="btn-pink" style="padding: 16px; border-radius: 15px; font-size: 1.1rem; box-shadow: 0 8px 15px rgba(255, 127, 166, 0.3); width: 100%;" onclick="alert('Registrasi Berhasil! Silakan Login.'); switchView('login')">Daftar Akun 🎉</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 

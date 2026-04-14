@@ -149,3 +149,25 @@ function toggleSuplemenUser(checkbox) {
     if (checkbox.checked) { cardSuplemen.style.display = "block"; alert("Suplemen Harian Aktif."); }
     else { cardSuplemen.style.display = "none"; alert("Suplemen dinonaktifkan."); }
 }
+
+function toggleAuthMode(mode) {
+    const slider = document.getElementById('tab-slider');
+    const container = document.getElementById('auth-sliding-container');
+    const btnLogin = document.getElementById('btn-tab-login');
+    const btnReg = document.getElementById('btn-tab-register');
+    const title = document.getElementById('auth-title');
+
+    if (mode === 'login') {
+        slider.style.transform = 'translateX(0)';
+        container.style.transform = 'translateX(0)';
+        btnLogin.style.color = 'var(--primary)';
+        btnReg.style.color = '#888';
+        title.innerText = 'Sayang Bunda';
+    } else {
+        slider.style.transform = 'translateX(calc(100% + 12px))';
+        container.style.transform = 'translateX(-50%)';
+        btnReg.style.color = 'var(--primary)';
+        btnLogin.style.color = '#888';
+        title.innerText = 'Sayang Bunda';
+    }
+}
