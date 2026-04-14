@@ -10,100 +10,94 @@
 
 <body>
 
-    <div id="view-login" class="view-section active container-mobile login-layout">
-        <div class="auth-card">
-            <div class="auth-header">
-                <h2>🌸 <span>Sayang Bunda</span></h2>
-                <p>Sistem Monitorin Kesehatan Wanita</p>
+    <div id="view-login" class="view-section active container-mobile login-layout" style="background: linear-gradient(135deg, var(--primary) 0%, #ff527b 100%); justify-content: center; padding-top: 40px; overflow-y: auto;">
+        <div class="login-hero" style="text-align: center; color: white; width: 100%; animation: slideUpFade 0.6s ease-out; flex-shrink: 0; margin-bottom: 30px;">
+            <div style="font-size: 5rem; margin-bottom: 10px; animation: bouncePop 1s ease-out;">🌸</div>
+            <h1 style="font-size: 2.2rem; font-weight: 800; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Sayang Bunda</h1>
+            <p style="font-size: 0.95rem; opacity: 0.9; margin-top: 5px; font-weight: 600;">Solusi Kehamilan Sehat & Bahagia</p>
+        </div>
+
+        <div class="auth-card" style="margin: 0; border-radius: 35px; width: 90%; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); padding: 35px 25px 35px; background: white; display: flex; flex-direction: column; margin-bottom: 40px;">
+            
+            <div class="auth-tabs" style="background: #f4f4f4; border-radius: 18px; padding: 6px; margin-bottom: 25px;">
+                <button class="tab-btn active" style="border-radius: 14px; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.05); color: var(--primary);">Masuk</button>
+                <button class="tab-btn inactive" onclick="switchView('register')" style="border-radius: 14px; background: transparent; color: #888;">Daftar Baru</button>
             </div>
 
-            <div class="auth-tabs">
-                <button class="tab-btn active">Masuk</button>
-                <button class="tab-btn inactive" onclick="switchView('register')">Daftar Baru</button>
-            </div>
+            <form id="form-login" onsubmit="handleLogin(event)" style="display: flex; flex-direction: column;">
+                <div class="input-group" style="position: relative; margin-bottom: 20px;">
+                    <label style="margin-bottom: 8px; font-size: 0.9rem;">Username</label>
+                    <div style="position: relative;">
+                        <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: #bbb;">👤</span>
+                        <input type="text" id="login-username" placeholder="Masukkan username" required style="padding-left: 45px; width: 100%; height: 50px; border-radius: 15px; font-size: 1rem;">
+                    </div>
+                </div>
+                <div class="input-group" style="position: relative; margin-bottom: 15px;">
+                    <label style="margin-bottom: 8px; font-size: 0.9rem;">Kata Sandi</label>
+                    <div style="position: relative;">
+                        <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: #bbb;">🔒</span>
+                        <input type="password" id="login-password" placeholder="••••••••" required style="padding-left: 45px; width: 100%; height: 50px; border-radius: 15px; font-size: 1rem;">
+                    </div>
+                </div>
+                
+                <div style="text-align: right; margin-bottom: 25px;">
+                    <a href="#" style="color: var(--primary); font-size: 0.85rem; font-weight: 800; text-decoration: none; display: inline-block;">Lupa kata sandi?</a>
+                </div>
 
-            <form id="form-login" onsubmit="handleLogin(event)">
-                <div class="input-group">
-                    <label>Username</label>
-                    <input type="text" id="login-username" placeholder="Username" required>
+                <div style="margin-top: 10px;">
+                    <button type="submit" class="btn-pink" style="padding: 16px; border-radius: 18px; font-size: 1.15rem; box-shadow: 0 8px 20px rgba(255, 127, 166, 0.3); width: 100%;">Masuk Sekarang 🚀</button>
                 </div>
-                <div class="input-group">
-                    <label>Kata Sandi</label>
-                    <input type="password" id="login-password" placeholder="******" required>
-                </div>
-                <button type="submit" class="btn-pink">Masuk</button>
             </form>
         </div>
     </div>
 
-    <div id="view-register" class="view-section hidden container-mobile login-layout">
-        <div class="auth-card">
-            <div class="auth-header">
-                <h2>🌸 <span>Sayang Bunda</span></h2>
-                <p>Sistem Informasi Pemantauan Ibu Hamil</p>
+    <div id="view-register" class="view-section hidden container-mobile login-layout" style="background: linear-gradient(135deg, var(--primary) 0%, #ff527b 100%); justify-content: flex-start; padding-top: 30px; overflow-y: auto;">
+        <div class="login-hero" style="text-align: center; color: white; width: 100%; animation: slideUpFade 0.6s ease-out; flex-shrink: 0; margin-bottom: 20px;">
+            <div style="font-size: 3.5rem; margin-bottom: 5px;">🌸</div>
+            <h1 style="font-size: 1.8rem; font-weight: 800; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Daftar Akun</h1>
+        </div>
+
+        <div class="auth-card" style="margin: 0; border-radius: 35px 35px 0 0; width: 100%; max-width: 100%; box-shadow: 0 -10px 25px rgba(0,0,0,0.1); padding: 30px 25px 40px; background: white; display: flex; flex-direction: column;">
+            
+            <div class="auth-tabs" style="background: #f4f4f4; border-radius: 18px; padding: 6px; margin-bottom: 20px;">
+                <button class="tab-btn inactive" onclick="switchView('login')" style="border-radius: 14px; background: transparent; color: #888;">Masuk</button>
+                <button class="tab-btn active" style="border-radius: 14px; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.05); color: var(--primary);">Daftar Baru</button>
             </div>
 
-            <div class="auth-tabs">
-                <button class="tab-btn inactive" onclick="switchView('login')">Masuk</button>
-                <button class="tab-btn active">Daftar Baru</button>
-            </div>
-
-            <form id="form-register" style="max-height: 50vh; overflow-y: auto; padding-right: 5px;">
-                <div class="input-group"><label>Nama Lengkap</label> <input type="text" placeholder="Masukkan nama..."
-                        required></div>
-                <div class="input-group"><label>Username</label> <input type="text" placeholder="Buat username..."
-                        required></div>
-                <div class="input-group"><label>Kata Sandi</label> <input type="password" placeholder="Buat password..."
-                        required></div>
-                <div class="input-group"><label>Berat Badan Awal (kg)</label> <input type="number"
-                        placeholder="Contoh: 55" required></div>
-                <div class="input-group"><label>Tinggi Badan (cm)</label> <input type="number" placeholder="Contoh: 160"
-                        required></div>
-                <div class="input-group">
-                    <label>Status Perkawinan</label>
-                    <select>
-                        <option>Menikah</option>
-                        <option>Belum Menikah</option>
-                        <option>Cerai</option>
-                    </select>
+            <form id="form-register" style="flex: 1; display: flex; flex-direction: column;">
+                <div style="max-height: 45vh; overflow-y: auto; padding-right: 5px; margin-bottom: 15px; flex-grow: 1;">
+                    <div class="input-group"><label>Nama Lengkap</label> <input type="text" placeholder="Masukkan nama sesui KTP..." required></div>
+                    <div class="input-group"><label>Username</label> <input type="text" placeholder="Buat username ringkas..." required></div>
+                    <div class="input-group"><label>Kata Sandi</label> <input type="password" placeholder="Buat kata sandi..." required></div>
+                    <div class="input-group"><label>Berat Badan Awal (kg)</label> <input type="number" placeholder="Contoh: 55" required></div>
+                    <div class="input-group"><label>Tinggi Badan (cm)</label> <input type="number" placeholder="Contoh: 160" required></div>
+                    <div class="input-group">
+                        <label>Status Perkawinan</label>
+                        <select><option>Menikah</option><option>Belum Menikah</option><option>Cerai</option></select>
+                    </div>
+                    <div class="input-group"><label>Pekerjaan</label> <input type="text" placeholder="Contoh: Pegawai Swasta / Ibu Rumah Tangga" required></div>
+                    <div class="input-group"><label>Riwayat Hamil / Keguguran</label> <input type="text" placeholder="Contoh: Hamil 0 kali, Keguguran 0 kali" required></div>
+                    <div class="input-group"><label>Alamat Lengkap</label> <input type="text" placeholder="Masukkan alamat lengkap" required></div>
+                    <div class="input-group"><label>No. HP</label> <input type="tel" placeholder="08xxxxxxxxxx" required></div>
+                    <div class="input-group"><label>Suku / Etnis</label> <input type="text" placeholder="Contoh: Sunda, Jawa, dll" required></div>
+                    <div class="input-group">
+                        <label>Tingkat Pendidikan</label>
+                        <select><option>SD/Sederajat</option><option>SMP/Sederajat</option><option>SMA/Sederajat</option><option>Diploma / Sarjana</option></select>
+                    </div>
+                    <div class="input-group">
+                        <label>Orang Serumah</label>
+                        <select><option>1-2 Orang</option><option>3-5 Orang</option><option>Lebih dari 5 Orang</option></select>
+                    </div>
+                    <div class="input-group">
+                        <label>Agama</label>
+                        <select><option>Islam</option><option>Kristen</option><option>Katolik</option><option>Hindu</option><option>Buddha</option><option>Konghucu</option></select>
+                    </div>
+                    <div class="input-group" style="padding-bottom: 20px;"><label>Email (Opsional)</label> <input type="email" placeholder="nama@email.com"></div>
                 </div>
-                <div class="input-group"><label>Pekerjaan</label> <input type="text" placeholder="Contoh: Pegawai Swasta / Ibu Rumah Tangga" required></div>
-                <div class="input-group"><label>Riwayat Hamil / Keguguran</label> <input type="text" placeholder="Contoh: Hamil 0 kali, Keguguran 0 kali" required></div>
-                <div class="input-group"><label>Alamat Lengkap</label> <input type="text" placeholder="Masukkan alamat lengkap" required></div>
-                <div class="input-group"><label>No. HP</label> <input type="tel" placeholder="08xxxxxxxxxx" required></div>
-                <div class="input-group"><label>Suku / Etnis</label> <input type="text" placeholder="Contoh: Sunda, Jawa, dll" required></div>
-                <div class="input-group">
-                    <label>Tingkat Pendidikan</label>
-                    <select>
-                        <option>SD/Sederajat</option>
-                        <option>SMP/Sederajat</option>
-                        <option>SMA/Sederajat</option>
-                        <option>Diploma / Sarjana</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label>Jumlah Orang Tinggal Serumah</label>
-                    <select>
-                        <option>1-2 Orang</option>
-                        <option>3-5 Orang</option>
-                        <option>Lebih dari 5 Orang</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label>Agama</label>
-                    <select>
-                        <option>Islam</option>
-                        <option>Kristen</option>
-                        <option>Katolik</option>
-                        <option>Hindu</option>
-                        <option>Buddha</option>
-                        <option>Konghucu</option>
-                    </select>
-                </div>
-                <div class="input-group"><label>Email (Jika Ada)</label> <input type="email" placeholder="nama@email.com"></div>
                 
-                <button type="button" class="btn-pink"
-                    onclick="alert('Registrasi Berhasil! Silakan Login.'); switchView('login')">Daftar Akun</button>
+                <div style="flex-shrink: 0; padding-bottom: 10px;">
+                    <button type="button" class="btn-pink" style="padding: 16px; border-radius: 15px; font-size: 1.1rem; box-shadow: 0 8px 15px rgba(255, 127, 166, 0.3); width: 100%;" onclick="alert('Registrasi Berhasil! Silakan Login.'); switchView('login')">Daftar Akun 🎉</button>
+                </div>
             </form>
         </div>
     </div>
@@ -121,7 +115,8 @@
         <div class="content">
             <div style="text-align: center; margin-bottom: 20px; color: var(--primary);">
                 <h2 style="margin: 0; font-size: 1.5rem; font-weight: 800;">Halo, Bunda Siti! 👋</h2>
-                <p style="margin: 5px 0 0; font-size: 0.95rem; font-weight: 700; color: var(--primary);">Mari persiapkan kehamilan yang sehat.</p>
+                <p style="margin: 5px 0 0; font-size: 0.95rem; font-weight: 700; color: var(--primary);">Mari persiapkan
+                    kehamilan yang sehat.</p>
             </div>
             <div class="card gamification">
                 <h3>Kebun Sehatmu</h3>
@@ -146,7 +141,9 @@
                 <h3>🕰️ Riwayat Kuesioner</h3>
                 <p style="margin-bottom: 15px;">Catatan pengisian kuesioner rutinmu:</p>
                 <div id="riwayat-list">
-                    <p id="riwayat-kosong" style="color: #aaa; font-style: italic; font-size: 0.9rem; text-align: center; margin: 10px 0;">Belum ada riwayat tercatat.</p>
+                    <p id="riwayat-kosong"
+                        style="color: #aaa; font-style: italic; font-size: 0.9rem; text-align: center; margin: 10px 0;">
+                        Belum ada riwayat tercatat.</p>
                 </div>
             </div>
         </div>
@@ -164,55 +161,137 @@
         </div>
     </div>
 
-    <div id="view-profile" class="view-section hidden container-mobile">
-        <div class="header">Profil Saya</div>
-        <div class="content">
-            <div class="card">
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <div style="font-size: 3rem; margin-bottom: 10px;">👩</div>
-                    <h3 style="margin: 0; color: var(--primary);">Siti Aisyah</h3>
-                </div>
-
-                <div class="profile-item"><label>Username</label>
-                    <p>user</p>
-                </div>
-                <div class="profile-item"><label>Berat & Tinggi Badan Awal</label>
-                    <p>55 kg / 160 cm</p>
-                </div>
-                <div class="profile-item"><label>Status Perkawinan</label>
-                    <p>Menikah</p>
-                </div>
-                <div class="profile-item"><label>Pekerjaan</label>
-                    <p>Ibu Rumah Tangga</p>
-                </div>
-                <div class="profile-item"><label>Riwayat Hamil / Keguguran</label>
-                    <p>Hamil 0 kali, Keguguran 0 kali</p>
-                </div>
-                <div class="profile-item"><label>Alamat Lengkap</label>
-                    <p>Jl. Cempaka No. 12, Bandung, Jawa Barat</p>
-                </div>
-                <div class="profile-item"><label>No. HP</label>
-                    <p>081234567890</p>
-                </div>
-                <div class="profile-item"><label>Suku / Etnis</label>
-                    <p>Sunda</p>
-                </div>
-                <div class="profile-item"><label>Tingkat Pendidikan</label>
-                    <p>Diploma / Sarjana</p>
-                </div>
-                <div class="profile-item"><label>Jumlah Orang Tinggal Serumah</label>
-                    <p>3-5 Orang</p>
-                </div>
-                <div class="profile-item"><label>Agama</label>
-                    <p>Islam</p>
-                </div>
-                <div class="profile-item"><label>Email</label>
-                    <p>siti.aisyah@email.com</p>
-                </div>
-
-                <button type="button" class="btn-pink" style="margin-top: 20px;"
-                    onclick="switchView('dashboard-user')">Kembali ke Dashboard</button>
+    <div id="view-profile" class="view-section hidden container-mobile" style="background-color: var(--gray-light);">
+        <div class="profile-header-curve"
+            style="background: linear-gradient(135deg, var(--primary) 0%, #ff527b 100%); padding: 25px 25px 40px 25px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; box-shadow: 0 10px 20px rgba(255,127,166,0.15); position: relative; z-index: 5;">
+            <div class="header-actions" style="margin-bottom: 25px;">
+                <button onclick="switchView('dashboard-user')" class="btn-back-clear"
+                    style="background: rgba(255, 255, 255, 0.25); border: 1px solid rgba(255,255,255,0.5); border-radius: 30px; padding: 8px 18px; color: white; display: flex; align-items: center; gap: 8px; font-weight: 800; cursor: pointer;">
+                    <span style="font-size: 1.1rem; line-height: 1;">❮</span> Kembali
+                </button>
             </div>
+            <div class="profile-avatar-container" style="margin-bottom: 0px; text-align: center;">
+                <div class="profile-avatar"
+                    style="border: 4px solid white; background-color: var(--primary-light); width: 90px; height: 90px; line-height: 85px; font-size: 3.5rem; border-radius: 50%; margin: 0 auto 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    👩</div>
+                <div class="profile-name">
+                    <h3 style="margin: 0; color: white; font-size: 1.4rem;">Siti Aisyah</h3>
+                    <p style="margin: 5px 0 0; font-size: 0.95rem; color: rgba(255,255,255,0.9); font-weight: 600;">
+                        @user</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content"
+            style="padding: 20px; display: flex; flex-direction: column; align-items: center; padding-bottom: 60px;">
+            <div class="profile-card-central"
+                style="background: white; width: 100%; border-radius: 20px; padding: 25px 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid #f1f1f1; padding-bottom: 15px;">
+                    <h4 class="profile-section-title"
+                        style="margin: 0; border: none; padding-bottom: 0; font-size: 1.15rem; color: var(--text);">Data
+                        Pribadi</h4>
+                    <button class="btn-edit-profile-small" onclick="alert('Fitur edit profil sedang dikembangkan!')"
+                        style="background: var(--primary-light); color: var(--primary); padding: 8px 15px; border-radius: 20px; border: none; font-weight: 800; display: flex; gap: 5px; align-items: center; cursor: pointer;">✏️
+                        Edit</button>
+                </div>
+
+                <div class="pi-group"
+                    style="background: #fdfdfd; border: 1px solid #eee; border-radius: 12px; padding: 15px; margin-bottom: 15px;">
+                    <div class="profile-item-interactive"
+                        style="border-bottom: 1px dashed #eee; padding-bottom: 10px; margin-bottom: 10px;">
+                        <div class="pi-icon" style="background: #fff0f4; color: var(--primary);">💍</div>
+                        <div class="pi-content"><label>Status Perkawinan</label>
+                            <p>Menikah</p>
+                        </div>
+                    </div>
+                    <div class="profile-item-interactive" style="padding-bottom: 0; border: none;">
+                        <div class="pi-icon" style="background: #fff0f4; color: var(--primary);">💼</div>
+                        <div class="pi-content"><label>Pekerjaan</label>
+                            <p>Ibu Rumah Tangga</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pi-group"
+                    style="background: #fdfdfd; border: 1px solid #eee; border-radius: 12px; padding: 15px; margin-bottom: 15px;">
+                    <div class="profile-item-interactive"
+                        style="border-bottom: 1px dashed #eee; padding-bottom: 10px; margin-bottom: 10px;">
+                        <div class="pi-icon" style="background: #e6f9ed; color: #2d5a2d;">⚖️</div>
+                        <div class="pi-content"><label>Medis Awal (Tinggi / Berat)</label>
+                            <p>160 cm / 55 kg</p>
+                        </div>
+                    </div>
+                    <div class="profile-item-interactive" style="padding-bottom: 0; border: none;">
+                        <div class="pi-icon" style="background: #e6f9ed; color: #2d5a2d;">🤰</div>
+                        <div class="pi-content"><label>Riwayat Hamil</label>
+                            <p>Hamil 0, Gugur 0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pi-group"
+                    style="background: #fdfdfd; border: 1px solid #eee; border-radius: 12px; padding: 15px; margin-bottom: 15px;">
+                    <div class="profile-item-interactive"
+                        style="border-bottom: 1px dashed #eee; padding-bottom: 10px; margin-bottom: 10px;">
+                        <div class="pi-icon" style="background: #eef2ff; color: #4A90E2;">📱</div>
+                        <div class="pi-content"><label>No. HP</label>
+                            <p>081234567890</p>
+                        </div>
+                    </div>
+                    <div class="profile-item-interactive" style="padding-bottom: 0; border: none;">
+                        <div class="pi-icon" style="background: #eef2ff; color: #4A90E2;">🏠</div>
+                        <div class="pi-content"><label>Alamat</label>
+                            <p>Jl. Cempaka No. 12, BDG</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pi-group"
+                    style="background: white; border: 2px dashed #eee; border-radius: 12px; padding: 15px; margin-top: 5px;">
+                    <details class="more-info-details">
+                        <summary
+                            style="font-weight: 800; color: var(--primary); text-align: center; cursor: pointer; user-select: none;">
+                            Lihat Info Lainnya 👇</summary>
+                        <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;">
+                            <div class="profile-item-interactive" style="margin-bottom: 15px;">
+                                <div class="pi-icon" style="background: var(--gray-light);">🎓</div>
+                                <div class="pi-content"><label>Pendidikan</label>
+                                    <p>Diploma / Sarjana</p>
+                                </div>
+                            </div>
+                            <div class="profile-item-interactive" style="margin-bottom: 15px;">
+                                <div class="pi-icon" style="background: var(--gray-light);">🕌</div>
+                                <div class="pi-content"><label>Agama</label>
+                                    <p>Islam</p>
+                                </div>
+                            </div>
+                            <div class="profile-item-interactive" style="margin-bottom: 15px;">
+                                <div class="pi-icon" style="background: var(--gray-light);">🌍</div>
+                                <div class="pi-content"><label>Suku / Etnis</label>
+                                    <p>Sunda</p>
+                                </div>
+                            </div>
+                            <div class="profile-item-interactive" style="margin-bottom: 15px;">
+                                <div class="pi-icon" style="background: var(--gray-light);">👨‍👩‍👧‍👦</div>
+                                <div class="pi-content"><label>Orang Serumah</label>
+                                    <p>3-5 Orang</p>
+                                </div>
+                            </div>
+                            <div class="profile-item-interactive">
+                                <div class="pi-icon" style="background: var(--gray-light);">✉️</div>
+                                <div class="pi-content"><label>Email</label>
+                                    <p>siti@email.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <button type="button" class="btn-outline"
+                style="width: 100%; padding: 15px; font-size: 1.05rem; margin-top: 30px; border: 2px solid #ff4d4d; color: #ff4d4d; background: white; border-radius: 15px;"
+                onclick="confirmLogout()">🚨 Keluar dari Akun</button>
         </div>
     </div>
 
@@ -224,7 +303,8 @@
                 <div class="progress-container">
                     <div class="progress-bar" id="kuesioner-progress" style="width: 20%;"></div>
                 </div>
-                <div style="font-size: 0.85rem; color: #888; margin-bottom: 25px; text-align: center; font-weight: 700;">
+                <div
+                    style="font-size: 0.85rem; color: #888; margin-bottom: 25px; text-align: center; font-weight: 700;">
                     Langkah <span id="step-counter">1</span> dari 5
                 </div>
 
@@ -248,10 +328,13 @@
                         <div class="pill" onclick="selectPill('pill-group-protein', this)">Keduanya</div>
                         <div class="pill" onclick="selectPill('pill-group-protein', this)">Tidak Konsumsi</div>
                     </div>
-                    <input type="text" placeholder="Berapa porsi kira-kira?" required class="custom-input large-text-input" style="margin-top: 15px;">
+                    <input type="text" placeholder="Berapa porsi kira-kira?" required
+                        class="custom-input large-text-input" style="margin-top: 15px;">
                     <div style="display: flex; gap: 10px; margin-top: 20px;">
-                        <button type="button" class="btn-outline" style="margin-top: 0;" onclick="nextStep(2, 1)">Kembali</button>
-                        <button type="button" class="btn-pink" style="margin-top: 0;" onclick="nextStep(2, 3)">Selanjutnya</button>
+                        <button type="button" class="btn-outline" style="margin-top: 0;"
+                            onclick="nextStep(2, 1)">Kembali</button>
+                        <button type="button" class="btn-pink" style="margin-top: 0;"
+                            onclick="nextStep(2, 3)">Selanjutnya</button>
                     </div>
                 </div>
 
@@ -261,8 +344,10 @@
                     <input type="text" placeholder="Ketik jenis obatnya..." class="custom-input large-text-input">
                     <p style="font-size:0.8rem; color:#aaa; margin-top:5px;">Kosongkan jika tidak ada.</p>
                     <div style="display: flex; gap: 10px; margin-top: 20px;">
-                        <button type="button" class="btn-outline" style="margin-top: 0;" onclick="nextStep(3, 2)">Kembali</button>
-                        <button type="button" class="btn-pink" style="margin-top: 0;" onclick="nextStep(3, 4)">Selanjutnya</button>
+                        <button type="button" class="btn-outline" style="margin-top: 0;"
+                            onclick="nextStep(3, 2)">Kembali</button>
+                        <button type="button" class="btn-pink" style="margin-top: 0;"
+                            onclick="nextStep(3, 4)">Selanjutnya</button>
                     </div>
                 </div>
 
@@ -270,30 +355,41 @@
                     <div class="step-icon">🤢</div>
                     <h3 class="step-title">Apakah ada keluhan Mual/Muntah?</h3>
                     <div class="pill-group" id="pill-group-mual">
-                        <div class="pill" onclick="selectPill('pill-group-mual', this); toggleMuntahFieldPill('tidak')">Tidak Ada 😍</div>
-                        <div class="pill border-pink" onclick="selectPill('pill-group-mual', this); toggleMuntahFieldPill('ya')">Ya, Mual/Muntah 🤢</div>
+                        <div class="pill" onclick="selectPill('pill-group-mual', this); toggleMuntahFieldPill('tidak')">
+                            Tidak Ada 😍</div>
+                        <div class="pill border-pink"
+                            onclick="selectPill('pill-group-mual', this); toggleMuntahFieldPill('ya')">Ya, Mual/Muntah
+                            🤢</div>
                     </div>
-                    <div id="muntah-frekuensi-container" class="hidden step-animate" style="margin-top: 15px; text-align: left;">
-                        <label style="font-size: 0.9rem; font-weight: 700; color: #555;">Berapa kali muntah dalam seminggu?</label>
-                        <input type="number" id="muntah-frekuensi" class="custom-input large-text-input" placeholder="Contoh: 3" style="margin-top:10px;">
+                    <div id="muntah-frekuensi-container" class="hidden step-animate"
+                        style="margin-top: 15px; text-align: left;">
+                        <label style="font-size: 0.9rem; font-weight: 700; color: #555;">Berapa kali muntah dalam
+                            seminggu?</label>
+                        <input type="number" id="muntah-frekuensi" class="custom-input large-text-input"
+                            placeholder="Contoh: 3" style="margin-top:10px;">
                     </div>
                     <div style="display: flex; gap: 10px; margin-top: 20px;">
-                        <button type="button" class="btn-outline" style="margin-top: 0;" onclick="nextStep(4, 3)">Kembali</button>
-                        <button type="button" class="btn-pink" style="margin-top: 0;" onclick="nextStep(4, 5)">Selanjutnya</button>
+                        <button type="button" class="btn-outline" style="margin-top: 0;"
+                            onclick="nextStep(4, 3)">Kembali</button>
+                        <button type="button" class="btn-pink" style="margin-top: 0;"
+                            onclick="nextStep(4, 5)">Selanjutnya</button>
                     </div>
                 </div>
 
                 <div id="step-5" class="kuesioner-step step-animate hidden">
                     <div class="step-icon">🏠</div>
                     <h3 class="step-title">Konfirmasi Alamat</h3>
-                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">Apakah alamat Bunda saat ini masih sama dengan data profil?</p>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">Apakah alamat Bunda saat ini masih
+                        sama dengan data profil?</p>
                     <div class="pill-group" id="pill-group-alamat">
                         <div class="pill" onclick="selectPill('pill-group-alamat', this)">Ya, Masih Sama</div>
                         <div class="pill" onclick="selectPill('pill-group-alamat', this)">Tidak, Sudah Pindah</div>
                     </div>
                     <div style="display: flex; gap: 10px; margin-top: 25px;">
-                        <button type="button" class="btn-outline" style="margin-top: 0;" onclick="nextStep(5, 4)">Kembali</button>
-                        <button type="button" class="btn-pink" style="margin-top: 0;" onclick="submitKuesioner()">Kirim Kuesioner 🚀</button>
+                        <button type="button" class="btn-outline" style="margin-top: 0;"
+                            onclick="nextStep(5, 4)">Kembali</button>
+                        <button type="button" class="btn-pink" style="margin-top: 0;" onclick="submitKuesioner()">Kirim
+                            Kuesioner 🚀</button>
                     </div>
                 </div>
             </div>

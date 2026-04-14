@@ -58,7 +58,7 @@ function startKuesioner() {
     document.querySelectorAll('.kuesioner-step').forEach(el => el.classList.add('hidden'));
     document.getElementById('step-1').classList.remove('hidden');
     document.getElementById('step-counter').innerText = '1';
-    
+
     // Reset progress bar
     const progressBar = document.getElementById('kuesioner-progress');
     if (progressBar) progressBar.style.width = '20%';
@@ -68,7 +68,7 @@ function nextStep(current, next) {
     document.getElementById('step-' + current).classList.add('hidden');
     document.getElementById('step-' + next).classList.remove('hidden');
     document.getElementById('step-counter').innerText = next;
-    
+
     // Update progress bar
     const progressBar = document.getElementById('kuesioner-progress');
     if (progressBar) progressBar.style.width = (next / 5 * 100) + '%';
@@ -82,10 +82,10 @@ function selectPill(groupId, element) {
 
 function toggleMuntahFieldPill(value) {
     const container = document.getElementById('muntah-frekuensi-container');
-    if (value === 'ya') { 
-        container.classList.remove('hidden'); 
-    } else { 
-        container.classList.add('hidden'); 
+    if (value === 'ya') {
+        container.classList.remove('hidden');
+    } else {
+        container.classList.add('hidden');
     }
 }
 
@@ -110,16 +110,16 @@ function submitKuesioner() {
     flowerEl.style.transform = "scale(1.2)";
     setTimeout(() => flowerEl.style.transform = "scale(1)", 300);
     document.getElementById('flower-status').innerText = flowerStages[stageIndex].text;
-    
+
     // Tambah riwayat ke dashboard
     const now = new Date();
     const dateStr = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
     const timeStr = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
-    
+
     const riwayatList = document.getElementById('riwayat-list');
     const riwayatKosong = document.getElementById('riwayat-kosong');
     if (riwayatKosong) riwayatKosong.style.display = 'none';
-    
+
     const riwayatItem = document.createElement('div');
     riwayatItem.className = 'riwayat-item';
     riwayatItem.innerHTML = `
