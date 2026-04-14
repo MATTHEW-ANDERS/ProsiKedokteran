@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Monitoring Pra-Kehamilan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="view-login" class="view-section active container-mobile login-layout">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2>🌸 <span>Sayang Bunda</span></h2>
+                <p>Sistem Monitorin Kesehatan Wanita</p>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="tab-btn active">Masuk</button>
+                <button class="tab-btn inactive" onclick="switchView('register')">Daftar Baru</button>
+            </div>
+
+            <form id="form-login" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" id="login-username" placeholder="Username" required>
+                </div>
+                <div class="input-group">
+                    <label>Kata Sandi</label>
+                    <input type="password" id="login-password" placeholder="******" required>
+                </div>
+                <button type="submit" class="btn-pink">Masuk</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="view-register" class="view-section hidden container-mobile login-layout">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2>🌸 <span>Sayang Bunda</span></h2>
+                <p>Sistem Informasi Pemantauan Ibu Hamil</p>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="tab-btn inactive" onclick="switchView('login')">Masuk</button>
+                <button class="tab-btn active">Daftar Baru</button>
+            </div>
+
+            <form id="form-register" style="max-height: 50vh; overflow-y: auto; padding-right: 5px;">
+                <div class="input-group"><label>Nama Lengkap</label> <input type="text" placeholder="Masukkan nama..."
+                        required></div>
+                <div class="input-group"><label>Username</label> <input type="text" placeholder="Buat username..."
+                        required></div>
+                <div class="input-group"><label>Kata Sandi</label> <input type="password" placeholder="Buat password..."
+                        required></div>
+                <div class="input-group"><label>Berat Badan Awal (kg)</label> <input type="number"
+                        placeholder="Contoh: 55" required></div>
+                <div class="input-group"><label>Tinggi Badan (cm)</label> <input type="number" placeholder="Contoh: 160"
+                        required></div>
+                <div class="input-group">
+                    <label>Status Perkawinan</label>
+                    <select>
+                        <option>Menikah</option>
+                        <option>Belum Menikah</option>
+                        <option>Cerai</option>
+                    </select>
+                </div>
+                <div class="input-group"><label>Pekerjaan</label> <input type="text" placeholder="Contoh: Pegawai Swasta / Ibu Rumah Tangga" required></div>
+                <div class="input-group"><label>Riwayat Hamil / Keguguran</label> <input type="text" placeholder="Contoh: Hamil 0 kali, Keguguran 0 kali" required></div>
+                <div class="input-group"><label>Alamat Lengkap</label> <input type="text" placeholder="Masukkan alamat lengkap" required></div>
+                <div class="input-group"><label>No. HP</label> <input type="tel" placeholder="08xxxxxxxxxx" required></div>
+                <div class="input-group"><label>Suku / Etnis</label> <input type="text" placeholder="Contoh: Sunda, Jawa, dll" required></div>
+                <div class="input-group">
+                    <label>Tingkat Pendidikan</label>
+                    <select>
+                        <option>SD/Sederajat</option>
+                        <option>SMP/Sederajat</option>
+                        <option>SMA/Sederajat</option>
+                        <option>Diploma / Sarjana</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Jumlah Orang Tinggal Serumah</label>
+                    <select>
+                        <option>1-2 Orang</option>
+                        <option>3-5 Orang</option>
+                        <option>Lebih dari 5 Orang</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Agama</label>
+                    <select>
+                        <option>Islam</option>
+                        <option>Kristen</option>
+                        <option>Katolik</option>
+                        <option>Hindu</option>
+                        <option>Buddha</option>
+                        <option>Konghucu</option>
+                    </select>
+                </div>
+                <div class="input-group"><label>Email (Jika Ada)</label> <input type="email" placeholder="nama@email.com"></div>
+                
+                <button type="button" class="btn-pink"
+                    onclick="alert('Registrasi Berhasil! Silakan Login.'); switchView('login')">Daftar Akun</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="view-dashboard-user" class="view-section hidden container-mobile">
+        <div class="header"
+            style="display: flex; justify-content: space-between; align-items: center; text-align: left;">
+            <div style="font-size: 1.2rem; font-weight: 800;">
+                🌸 Sayang Bunda
+            </div>
+            <div>
+                <button onclick="switchView('profile')" class="btn-profile-top">👤</button>
+            </div>
+        </div>
+        <div class="content">
+            <div style="text-align: center; margin-bottom: 20px; color: var(--primary);">
+                <h2 style="margin: 0; font-size: 1.5rem; font-weight: 800;">Halo, Bunda Siti! 👋</h2>
+                <p style="margin: 5px 0 0; font-size: 0.95rem; font-weight: 700; color: var(--primary);">Mari persiapkan kehamilan yang sehat.</p>
+            </div>
+            <div class="card gamification">
+                <h3>Kebun Sehatmu</h3>
+                <p>Isi kuesioner rutin untuk menumbuhkan bungamu!</p>
+                <div class="flower-stage" id="flower-emoji">🌱</div>
+                <div class="progress-text" id="flower-status">Status: Bibit Baru</div>
+            </div>
+
+            <div class="card" id="card-suplemen" style="border: 2px solid var(--secondary);">
+                <h3>💊 Ceklis Suplemen Harian</h3>
+                <p>Dokter meresepkan suplemen untukmu. Sudah diminum hari ini?</p>
+                <button class="btn-green" id="btn-suplemen" onclick="minumSuplemen()">Sudah Saya Minum!</button>
+            </div>
+
+            <div class="card">
+                <h3>📝 Kuesioner Minggu Ini</h3>
+                <p>Waktunya update kondisi mingguanmu.</p>
+                <button class="btn-pink" onclick="startKuesioner()">Mulai Isi Kuesioner</button>
+            </div>
+
+            <div class="card">
+                <h3>🕰️ Riwayat Kuesioner</h3>
+                <p style="margin-bottom: 15px;">Catatan pengisian kuesioner rutinmu:</p>
+                <div id="riwayat-list">
+                    <p id="riwayat-kosong" style="color: #aaa; font-style: italic; font-size: 0.9rem; text-align: center; margin: 10px 0;">Belum ada riwayat tercatat.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Bawah -->
+        <div class="bottom-nav">
+            <button class="nav-item active" onclick="switchView('dashboard-user')">
+                <span class="nav-icon">🏠</span>
+                <span>Home</span>
+            </button>
+            <button class="nav-item" onclick="confirmLogout()">
+                <span class="nav-icon">🚪</span>
+                <span>Keluar</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="view-profile" class="view-section hidden container-mobile">
+        <div class="header">Profil Saya</div>
+        <div class="content">
+            <div class="card">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">👩</div>
+                    <h3 style="margin: 0; color: var(--primary);">Siti Aisyah</h3>
+                </div>
+
+                <div class="profile-item"><label>Username</label>
+                    <p>user</p>
+                </div>
+                <div class="profile-item"><label>Berat & Tinggi Badan Awal</label>
+                    <p>55 kg / 160 cm</p>
+                </div>
+                <div class="profile-item"><label>Status Perkawinan</label>
+                    <p>Menikah</p>
+                </div>
+                <div class="profile-item"><label>Pekerjaan</label>
+                    <p>Ibu Rumah Tangga</p>
+                </div>
+                <div class="profile-item"><label>Riwayat Hamil / Keguguran</label>
+                    <p>Hamil 0 kali, Keguguran 0 kali</p>
+                </div>
+                <div class="profile-item"><label>Alamat Lengkap</label>
+                    <p>Jl. Cempaka No. 12, Bandung, Jawa Barat</p>
+                </div>
+                <div class="profile-item"><label>No. HP</label>
+                    <p>081234567890</p>
+                </div>
+                <div class="profile-item"><label>Suku / Etnis</label>
+                    <p>Sunda</p>
+                </div>
+                <div class="profile-item"><label>Tingkat Pendidikan</label>
+                    <p>Diploma / Sarjana</p>
+                </div>
+                <div class="profile-item"><label>Jumlah Orang Tinggal Serumah</label>
+                    <p>3-5 Orang</p>
+                </div>
+                <div class="profile-item"><label>Agama</label>
+                    <p>Islam</p>
+                </div>
+                <div class="profile-item"><label>Email</label>
+                    <p>siti.aisyah@email.com</p>
+                </div>
+
+                <button type="button" class="btn-pink" style="margin-top: 20px;"
+                    onclick="switchView('dashboard-user')">Kembali ke Dashboard</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-form-mingguan" class="view-section hidden container-mobile">
+        <div class="header">Kuesioner Mingguan</div>
+        <div class="content">
+            <div class="card" style="overflow: hidden;">
+                <!-- Baris Progress -->
+                <div class="progress-container">
+                    <div class="progress-bar" id="kuesioner-progress" style="width: 20%;"></div>
+                </div>
+                <div style="font-size: 0.85rem; color: #888; margin-bottom: 25px; text-align: center; font-weight: 700;">
+                    Langkah <span id="step-counter">1</span> dari 5
+                </div>
+
+                <div id="step-1" class="kuesioner-step step-animate active">
+                    <div class="step-icon">⚖️</div>
+                    <h3 class="step-title">Berapa berat badan Bunda saat ini?</h3>
+                    <div class="input-wrapper">
+                        <input type="number" placeholder="0" required class="large-number-input">
+                        <span class="unit">kg</span>
+                    </div>
+                    <button type="button" class="btn-pink" onclick="nextStep(1, 2)">Selanjutnya</button>
+                    <button type="button" class="btn-outline" onclick="switchView('dashboard-user')">Batal</button>
+                </div>
+
+                <div id="step-2" class="kuesioner-step step-animate hidden">
+                    <div class="step-icon">🥩</div>
+                    <h3 class="step-title">Konsumsi Protein Minggu Ini</h3>
+                    <div class="pill-group" id="pill-group-protein">
+                        <div class="pill" onclick="selectPill('pill-group-protein', this)">Protein Hewani</div>
+                        <div class="pill" onclick="selectPill('pill-group-protein', this)">Protein Nabati</div>
+                        <div class="pill" onclick="selectPill('pill-group-protein', this)">Keduanya</div>
+                        <div class="pill" onclick="selectPill('pill-group-protein', this)">Tidak Konsumsi</div>
+                    </div>
+                    <input type="text" placeholder="Berapa porsi kira-kira?" required class="custom-input large-text-input" style="margin-top: 15px;">
+                    <div style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button type="button" class="btn-outline" style="margin-top: 0;" onclick="nextStep(2, 1)">Kembali</button>
+                        <button type="button" class="btn-pink" style="margin-top: 0;" onclick="nextStep(2, 3)">Selanjutnya</button>
+                    </div>
+                </div>
+
+                <div id="step-3" class="kuesioner-step step-animate hidden">
+                    <div class="step-icon">💊</div>
+                    <h3 class="step-title">Ada konsumsi obat minggu ini?</h3>
+                    <input type="text" placeholder="Ketik jenis obatnya..." class="custom-input large-text-input">
+                    <p style="font-size:0.8rem; color:#aaa; margin-top:5px;">Kosongkan jika tidak ada.</p>
+                    <div style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button type="button" class="btn-outline" style="margin-top: 0;" onclick="nextStep(3, 2)">Kembali</button>
+                        <button type="button" class="btn-pink" style="margin-top: 0;" onclick="nextStep(3, 4)">Selanjutnya</button>
+                    </div>
+                </div>
+
+                <div id="step-4" class="kuesioner-step step-animate hidden">
+                    <div class="step-icon">🤢</div>
+                    <h3 class="step-title">Apakah ada keluhan Mual/Muntah?</h3>
+                    <div class="pill-group" id="pill-group-mual">
+                        <div class="pill" onclick="selectPill('pill-group-mual', this); toggleMuntahFieldPill('tidak')">Tidak Ada 😍</div>
+                        <div class="pill border-pink" onclick="selectPill('pill-group-mual', this); toggleMuntahFieldPill('ya')">Ya, Mual/Muntah 🤢</div>
+                    </div>
+                    <div id="muntah-frekuensi-container" class="hidden step-animate" style="margin-top: 15px; text-align: left;">
+                        <label style="font-size: 0.9rem; font-weight: 700; color: #555;">Berapa kali muntah dalam seminggu?</label>
+                        <input type="number" id="muntah-frekuensi" class="custom-input large-text-input" placeholder="Contoh: 3" style="margin-top:10px;">
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button type="button" class="btn-outline" style="margin-top: 0;" onclick="nextStep(4, 3)">Kembali</button>
+                        <button type="button" class="btn-pink" style="margin-top: 0;" onclick="nextStep(4, 5)">Selanjutnya</button>
+                    </div>
+                </div>
+
+                <div id="step-5" class="kuesioner-step step-animate hidden">
+                    <div class="step-icon">🏠</div>
+                    <h3 class="step-title">Konfirmasi Alamat</h3>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">Apakah alamat Bunda saat ini masih sama dengan data profil?</p>
+                    <div class="pill-group" id="pill-group-alamat">
+                        <div class="pill" onclick="selectPill('pill-group-alamat', this)">Ya, Masih Sama</div>
+                        <div class="pill" onclick="selectPill('pill-group-alamat', this)">Tidak, Sudah Pindah</div>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 25px;">
+                        <button type="button" class="btn-outline" style="margin-top: 0;" onclick="nextStep(5, 4)">Kembali</button>
+                        <button type="button" class="btn-pink" style="margin-top: 0;" onclick="submitKuesioner()">Kirim Kuesioner 🚀</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-dashboard-admin" class="view-section hidden container-web">
+        <div class="web-header" style="background:#4A90E2;">
+            <h2>Panel Admin & Dokter</h2><button onclick="logout()" class="btn-logout">Keluar</button>
+        </div>
+        <div class="web-content">
+            <div class="web-main">
+                <div class="card">
+                    <h3>Monitoring Pasien</h3>
+                    <p>Siti Aisyah - Kuesioner Minggu 2: <span style="color: green;">Sudah Diisi</span></p>
+                    <label><input type="checkbox" checked onchange="toggleSuplemenUser(this)"> Aktifkan Fitur Suplemen
+                        Harian Siti</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-dashboard-medis" class="view-section hidden container-web">
+        <div class="web-header" style="background:#20c997;">
+            <h2>Panel Medis (Lab)</h2><button onclick="logout()" class="btn-logout">Keluar</button>
+        </div>
+        <div class="web-content">
+            <div class="web-main">
+                <div class="card">
+                    <h3>Input Lab Sukses!</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Konfirmasi Logout -->
+    <div id="logout-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3 style="margin-top: 0; color: var(--primary);">Konfirmasi Keluar</h3>
+            <p>Apakah Anda yakin ingin keluar dari aplikasi?</p>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button class="btn-outline" onclick="closeLogoutModal()" style="margin-top: 0;">Tidak</button>
+                <button class="btn-pink" onclick="executeLogout()" style="margin-top: 0;">Ya, Keluar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

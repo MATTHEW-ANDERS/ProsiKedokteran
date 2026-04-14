@@ -1,0 +1,582 @@
+/* Mengambil font 'Nunito' dari Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+    --primary: #FF7FA6;
+    --primary-light: #FFF0F4;
+    --secondary: #98FB98;
+    --bg-mobile: #F8F9FA;
+    --bg-web: #e9ecef;
+    --text: #333;
+    --gray-text: #888888;
+    --gray-light: #F1F1F1;
+    --card-bg: #FFFFFF;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* Menerapkan font Nunito ke seluruh elemen */
+    font-family: 'Nunito', sans-serif;
+}
+
+input, select, textarea, button {
+    font-family: inherit;
+}
+
+body {
+    background-color: #d3d9df;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.view-section {
+    display: none;
+    width: 100%;
+}
+
+.view-section.active {
+    display: block;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ==================== CONTAINER DEVICE MOBILE ==================== */
+.container-mobile {
+    background-color: var(--bg-mobile);
+    width: 100%;
+    max-width: 414px;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 450px) {
+    .container-mobile {
+        height: 85vh;
+        max-height: 850px;
+        border-radius: 20px;
+    }
+
+    .header {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+}
+
+/* ==================== LOGIN / REGISTER ==================== */
+.login-layout {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-light);
+    min-height: 100%;
+}
+
+.login-layout.active {
+    display: flex;
+}
+
+.auth-card {
+    background: white;
+    width: 88%;
+    border-radius: 20px;
+    padding: 30px 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    margin: auto;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.auth-header h2 {
+    font-size: 1.6rem;
+    /* Sedikit diperbesar agar font lucunya lebih terlihat */
+    font-weight: 800;
+    /* Dibuat lebih tebal */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 5px;
+    white-space: nowrap;
+}
+
+.auth-header h2 span {
+    color: var(--primary);
+}
+
+.auth-header p {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-text);
+}
+
+.auth-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+.tab-btn.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+.tab-btn.inactive {
+    background-color: var(--gray-light);
+    color: var(--gray-text);
+}
+
+.input-group {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.input-group label {
+    color: var(--gray-text);
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    outline: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.input-group input:focus {
+    border-color: var(--primary);
+}
+
+.btn-pink {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-outline {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-green {
+    background: var(--secondary);
+    color: #2d5a2d;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* ==================== UI KONTEN MOBILE ==================== */
+.header {
+    background: var(--primary);
+    color: white;
+    padding: 20px;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.content {
+    padding: 20px;
+    padding-bottom: 40px;
+}
+
+.custom-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.gamification {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.flower-stage {
+    font-size: 4rem;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.progress-text {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-top: 10px;
+}
+
+.profile-item {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.profile-item label {
+    color: #888;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 3px;
+    display: block;
+}
+
+.profile-item p {
+    margin: 0;
+    color: #333;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* ==================== RIWAYAT KUESIONER ==================== */
+.riwayat-item {
+    padding: 12px;
+    background: #fcfcfc;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideUpFade 0.3s ease-out;
+}
+.riwayat-info {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--text);
+}
+.riwayat-date {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 3px;
+    font-weight: 600;
+}
+.riwayat-status {
+    background: #e6f9ed;
+    color: #2d5a2d;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+
+/* ==================== MENU NAVBAR ==================== */
+.btn-profile-top {
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    color: var(--primary);
+    transition: 0.2s;
+}
+
+.btn-profile-top:hover {
+    transform: scale(1.05);
+}
+
+.bottom-nav {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0 15px;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.03);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    z-index: 10;
+}
+
+.bottom-nav .nav-item {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #bbb;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.75rem;
+    gap: 4px;
+    transition: 0.2s;
+}
+
+.bottom-nav .nav-item.active {
+    color: var(--primary);
+}
+
+.bottom-nav .nav-item:hover {
+    color: var(--primary);
+    opacity: 0.8;
+}
+
+.bottom-nav .nav-icon {
+    font-size: 1.4rem;
+}
+
+/* ==================== INTERACTIVE FORM ==================== */
+.progress-container {
+    background: #f0f0f0;
+    border-radius: 10px;
+    height: 8px;
+    width: 100%;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: var(--primary);
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step-animate {
+    animation: slideUpFade 0.4s ease-out;
+    text-align: center;
+}
+
+@keyframes slideUpFade {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+.step-icon {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+    animation: bouncePop 0.5s ease-out;
+}
+
+@keyframes bouncePop {
+    0% { transform: scale(0); }
+    70% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.step-title {
+    font-size: 1.15rem;
+    color: var(--text);
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.pill-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pill {
+    padding: 14px;
+    border: 2px solid #eee;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: 700;
+    color: #666;
+    transition: all 0.2s ease;
+    background: white;
+}
+
+.pill:hover {
+    border-color: #ffb3c6;
+    background: #fff8fa;
+}
+
+.pill.selected {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    color: var(--primary);
+    box-shadow: 0 4px 10px rgba(255, 127, 166, 0.2);
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.large-number-input {
+    font-size: 2.5rem;
+    font-weight: 800;
+    width: 120px;
+    text-align: center;
+    border: none;
+    border-bottom: 3px solid #ddd;
+    color: var(--primary);
+    outline: none;
+    background: transparent;
+    transition: border-color 0.3s;
+}
+
+.large-number-input:focus {
+    border-bottom-color: var(--primary);
+}
+
+.input-wrapper .unit {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #888;
+}
+
+.large-text-input {
+    font-size: 1.1rem;
+    padding: 15px;
+    border-radius: 15px;
+    background: #f8f9fa;
+    border: 2px solid #eee;
+    text-align: center;
+}
+.large-text-input:focus {
+    background: white;
+    border-color: var(--primary);
+}
+
+/* ==================== LAYOUT WEB ==================== */
+.container-web {
+    width: 100%;
+    max-width: 1200px;
+    min-height: 90vh;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.web-header {
+    padding: 20px 30px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.web-header h2 {
+    font-weight: 800;
+}
+
+.btn-logout {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.web-content {
+    flex: 1;
+    padding: 30px;
+    background: var(--bg-web);
+}
+
+/* ==================== CUSTOM MODAL ==================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.modal-overlay.hidden {
+    display: none !important;
+}
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    width: 85%;
+    max-width: 320px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: popIn 0.25s ease-out;
+}
+.modal-content p {
+    color: var(--text);
+    margin-bottom: 0;
+}
+@keyframes popIn {
+    0% { transform: scale(0.85); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
