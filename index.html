@@ -10,41 +10,30 @@
 
 <body>
 
-    <div id="view-login" class="view-section active container-mobile login-layout"
-        style="background: linear-gradient(135deg, var(--primary) 0%, #ff527b 100%); justify-content: flex-start; padding-top: 30px; overflow-y: hidden;">
-        <div class="login-hero"
-            style="text-align: center; color: white; width: 100%; flex-shrink: 0; margin-bottom: 20px;">
-            <div style="font-size: 3.5rem; margin-bottom: 5px;">🌸</div>
-            <h1 id="auth-title"
-                style="font-size: 2rem; font-weight: 800; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.3s;">
-                Sayang Bunda</h1>
-            <p style="font-size: 0.95rem; opacity: 0.9; margin-top: 5px; font-weight: 600;">Sistem Monitoring
-                KesehatanWanita</p>
+    <div id="view-login" class="view-section active container-mobile login-layout">
+        <div class="login-hero">
+            <div class="login-hero-icon">🌸</div>
+            <h1 id="auth-title" class="login-hero-title">Sayang Bunda</h1>
+            <p class="login-hero-desc">Sistem Monitoring KesehatanWanita</p>
         </div>
 
-        <div class="auth-card"
-            style="margin: 0; border-radius: 35px 35px 0 0; width: 100%; max-width: 100%; height: 65vh; box-shadow: 0 -10px 25px rgba(0,0,0,0.1); padding: 30px 25px 20px; background: white; display: flex; flex-direction: column;">
+        <div class="auth-card">
 
-            <div class="auth-tabs"
-                style="position: relative; background: #f4f4f4; border-radius: 18px; padding: 6px; margin-bottom: 20px; display: flex;">
-                <div id="tab-slider"
-                    style="position: absolute; top: 6px; left: 6px; bottom: 6px; width: calc(50% - 6px); background: white; border-radius: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
-                </div>
+            <div class="auth-tabs">
+                <div id="tab-slider" class="tab-slider-bg"></div>
                 <button class="tab-btn" id="btn-tab-login" onclick="toggleAuthMode('login')"
-                    style="flex: 1; position: relative; z-index: 1; background: transparent; color: var(--primary); font-weight: 800; border-radius: 14px;">Masuk</button>
+                    style="position: relative; z-index: 1; background: transparent; color: var(--primary); font-weight: 800; border-radius: 14px;">Masuk</button>
                 <button class="tab-btn" id="btn-tab-register" onclick="toggleAuthMode('register')"
-                    style="flex: 1; position: relative; z-index: 1; background: transparent; color: #888; font-weight: 800; border-radius: 14px;">Daftar
+                    style="position: relative; z-index: 1; background: transparent; color: #888; font-weight: 800; border-radius: 14px;">Daftar
                     Baru</button>
             </div>
 
             <div style="flex: 1; position: relative; overflow: hidden;">
                 <!-- Wrapper Flex Container -->
-                <div id="auth-sliding-container"
-                    style="display: flex; width: 200%; height: 100%; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
+                <div id="auth-sliding-container" class="auth-sliding-container">
 
                     <!-- Form 1: LOGIN -->
-                    <form id="form-login" onsubmit="handleLogin(event)"
-                        style="width: 50%; padding-right: 10px; display: flex; flex-direction: column;">
+                    <form id="form-login" onsubmit="handleLogin(event)" class="auth-form-panel left-panel">
                         <div class="input-group" style="position: relative; margin-bottom: 20px;">
                             <label style="margin-bottom: 8px; font-size: 0.9rem;">Username</label>
                             <div style="position: relative;">
@@ -78,8 +67,7 @@
                     </form>
 
                     <!-- Form 2: REGISTER -->
-                    <form id="form-register"
-                        style="width: 50%; padding-left: 10px; display: flex; flex-direction: column; overflow-y: auto;">
+                    <form id="form-register" class="auth-form-panel right-panel">
                         <div style="flex: 1; padding-right: 5px; margin-bottom: 15px;">
                             <div class="input-group"><label>Nama Lengkap</label> <input type="text"
                                     placeholder="Masukkan nama sesui KTP..." required></div>
@@ -173,14 +161,7 @@
             <div class="card gamification">
                 <h3>Kebun Sehatmu</h3>
                 <p>Isi kuesioner rutin untuk menumbuhkan bungamu!</p>
-                <style>
-                    @keyframes pulseBreathe {
-                        0% { transform: scale(1); }
-                        50% { transform: scale(1.15); }
-                        100% { transform: scale(1); }
-                    }
-                </style>
-                <div class="flower-stage" id="flower-emoji" style="animation: pulseBreathe 2s infinite ease-in-out; display: inline-block;">🌱</div>
+                <div class="flower-stage" id="flower-emoji">🌱</div>
                 <div class="progress-text" id="flower-status">Status: Bibit Baru</div>
             </div>
 
