@@ -102,7 +102,7 @@ body {
         height: auto;
     }
 
-    .btn-pink, 
+    .btn-pink,
     .btn-outline,
     .btn-green {
         padding: 10px;
@@ -111,11 +111,11 @@ body {
     }
 
     /* Override inline styles di form register untuk desktop */
-    #form-register > div:first-child {
+    #form-register>div:first-child {
         margin-bottom: 0px !important;
     }
 
-    #form-register > div:last-child {
+    #form-register>div:last-child {
         padding-bottom: 0px !important;
     }
 }
@@ -152,7 +152,7 @@ body {
     font-size: 1.8rem;
     font-weight: 800;
     margin: 0;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: 0.3s;
 }
 
@@ -165,13 +165,13 @@ body {
 
 .auth-card {
     background: white;
-    width: 100%;
+    width: 90%;
     max-width: 100%;
     height: 65vh;
-    border-radius: 35px 35px 0 0;
+    border-radius: 35px;
     padding: 25px 20px 20px;
     box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.1);
-    margin: 0;
+    margin: 0 0 20px 0;
     display: flex;
     flex-direction: column;
 }
@@ -221,7 +221,7 @@ body {
     width: calc(50% - 6px);
     background: white;
     border-radius: 14px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -922,9 +922,17 @@ body {
 
 /* ==================== ANIMASI GAMIFIKASI ==================== */
 @keyframes pulseBreathe {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 #flower-emoji {

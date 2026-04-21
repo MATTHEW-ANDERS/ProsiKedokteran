@@ -337,120 +337,203 @@
 
     <div id="view-form-mingguan" class="view-section hidden container-mobile">
         <div class="header">Kuesioner Mingguan</div>
-        <div class="content">
-            <div class="card" style="overflow: hidden;">
+        <div class="content" style="padding-top: 15px; padding-bottom: 40px;">
+            <div class="card" style="overflow: hidden; padding: 25px 20px;">
                 <!-- Baris Progress -->
-                <div class="progress-container">
-                    <div class="progress-bar" id="kuesioner-progress" style="width: 20%;"></div>
+                <div class="progress-container"
+                    style="background: #f0f0f0; border-radius: 10px; height: 8px; margin-bottom: 10px;">
+                    <div class="progress-bar" id="kuesioner-progress"
+                        style="width: 25%; background: var(--primary); height: 100%; border-radius: 10px; transition: width 0.3s ease;">
+                    </div>
                 </div>
                 <div
                     style="font-size: 0.85rem; color: #888; margin-bottom: 25px; text-align: center; font-weight: 700;">
-                    Langkah <span id="step-counter">1</span> dari 6
+                    Langkah <span id="step-counter">1</span> dari 4
                 </div>
 
+                <!-- Bagian 1: Berat Badan -->
                 <div id="step-1" class="kuesioner-step step-animate active">
-                    <div class="step-icon">⚖️</div>
-                    <h3 class="step-title">Berapa berat badan Bunda saat ini?</h3>
-                    <div class="input-wrapper">
-                        <input type="number" placeholder="0" required class="large-number-input">
-                        <span class="unit">kg</span>
+                    <div style="text-align: center;">
+                        <span
+                            style="background: var(--primary-light); color: var(--primary); padding: 5px 12px; border-radius: 15px; font-weight: 800; font-size: 0.8rem; display: inline-block; margin-bottom: 15px;">Kondisi
+                            Fisik</span>
+                        <div class="step-icon" style="font-size: 3.5rem; margin-bottom: 15px;">⚖️</div>
+                        <h3 class="step-title" style="font-size: 1.25rem; color: var(--text); margin-bottom: 10px;">
+                            Berapa berat badan Bunda hari ini?</h3>
                     </div>
-                    <button type="button" class="btn-pink" onclick="nextStep(1, 2)">Selanjutnya</button>
-                    <button type="button" class="btn-outline" onclick="switchView('dashboard-user')">Batal</button>
+                    <div class="input-wrapper" style="position: relative; margin: 20px 0 30px;">
+                        <input type="number" placeholder="0" required class="large-number-input"
+                            style="width: 100%; text-align: center; font-size: 2.5rem; padding: 15px 40px 15px 15px; border: 2px dashed #ccc; border-radius: 15px; color: var(--primary); font-weight: 800; background: #fafafa;">
+                        <span class="unit"
+                            style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; font-weight: 800; color: #aaa;">kg</span>
+                    </div>
+                    <button type="button" class="btn-pink"
+                        style="width: 100%; padding: 16px; border-radius: 15px; font-size: 1.1rem; box-shadow: 0 5px 15px rgba(255,127,166,0.3);"
+                        onclick="nextStep(1, 2)">Selanjutnya</button>
+                    <button type="button" class="btn-outline"
+                        style="width: 100%; margin-top: 10px; border: none; color: #888;"
+                        onclick="switchView('dashboard-user')">Batal</button>
                 </div>
 
+                <!-- Bagian 2: Pola Makan (Nabati) -->
                 <div id="step-2" class="kuesioner-step step-animate hidden">
-                    <div class="step-icon">🥩</div>
-                    <h3 class="step-title">Konsumsi Protein Minggu Ini</h3>
-                    <div class="pill-group" id="pill-group-protein">
-                        <div class="pill" onclick="selectPill('pill-group-protein', this)">Protein Hewani</div>
-                        <div class="pill" onclick="selectPill('pill-group-protein', this)">Protein Nabati</div>
-                        <div class="pill" onclick="selectPill('pill-group-protein', this)">Keduanya</div>
-                        <div class="pill" onclick="selectPill('pill-group-protein', this)">Tidak Konsumsi</div>
+                    <div style="text-align: center;">
+                        <span
+                            style="background: #fff3cd; color: #856404; padding: 5px 12px; border-radius: 15px; font-weight: 800; font-size: 0.8rem; display: inline-block; margin-bottom: 15px;">Pola
+                            Makan</span>
+                        <div class="step-icon" style="font-size: 3.5rem; margin-bottom: 15px;">🥗</div>
+                        <h3 class="step-title"
+                            style="font-size: 1.2rem; color: var(--text); text-align: left; margin-bottom: 10px;">Apakah
+                            ada konsumsi makanan di bawah ini?</h3>
+                        <p style="font-size: 0.85rem; color: #888; text-align: left; margin-bottom: 15px;">(Bisa pilih
+                            lebih dari satu)</p>
                     </div>
-                    <input type="text" placeholder="Berapa porsi kira-kira?" required
-                        class="custom-input large-text-input" style="margin-top: 15px;">
-                    <div style="display: flex; gap: 10px; margin-top: 20px;">
-                        <button type="button" class="btn-outline" style="margin-top: 0;"
+
+                    <div class="pill-group-vertical"
+                        style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px;">
+                        <div class="pill toggle-pill" onclick="handlePillClick(this, false)"
+                            style="text-align: left; padding: 12px 15px; border-radius: 12px;">🥬 Sayur-sayuran Hijau
+                            (bayam, dll)</div>
+                        <div class="pill toggle-pill" onclick="handlePillClick(this, false)"
+                            style="text-align: left; padding: 12px 15px; border-radius: 12px;">🥜 Biji-bijian (tahu,
+                            tempe, kedelai)</div>
+                        <div class="pill toggle-pill exclusive-pill" onclick="handlePillClick(this, true)"
+                            style="text-align: left; padding: 12px 15px; border-radius: 12px;">❌ Tidak Keduanya</div>
+                    </div>
+
+                    <h3 class="step-title"
+                        style="font-size: 1rem; color: var(--text); text-align: left; margin-bottom: 15px;">Berapa kali
+                        dalam satu minggu mengkonsumsinya?</h3>
+                    <div class="pill-group" id="pill-frek-nabati"
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div class="pill" onclick="selectPill('pill-frek-nabati', this)">1-5x</div>
+                        <div class="pill" onclick="selectPill('pill-frek-nabati', this)">6-10x</div>
+                        <div class="pill" onclick="selectPill('pill-frek-nabati', this)">11-15x</div>
+                        <div class="pill" onclick="selectPill('pill-frek-nabati', this)">16-20x</div>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; margin-top: 30px;">
+                        <button type="button" class="btn-outline"
+                            style="flex: 1; padding: 16px; border-radius: 15px; margin-top: 0;"
                             onclick="nextStep(2, 1)">Kembali</button>
-                        <button type="button" class="btn-pink" style="margin-top: 0;"
+                        <button type="button" class="btn-pink"
+                            style="flex: 2; padding: 16px; border-radius: 15px; box-shadow: 0 5px 15px rgba(255,127,166,0.3); margin-top: 0;"
                             onclick="nextStep(2, 3)">Selanjutnya</button>
                     </div>
                 </div>
 
+                <!-- Bagian 3: Pola Makan (Protein Hewani) -->
                 <div id="step-3" class="kuesioner-step step-animate hidden">
-                    <div class="step-icon">🏃‍♀️</div>
-                    <h3 class="step-title">Kegiatan fisik/olahraga apa yang Anda lakukan minggu ini?</h3>
-                    <div class="pill-group" id="pill-group-olahraga">
-                        <div class="pill" onclick="selectPill('pill-group-olahraga', this); toggleOlahragaField('ringan')">Ringan: Jalan kaki, yoga</div>
-                        <div class="pill" onclick="selectPill('pill-group-olahraga', this); toggleOlahragaField('sedang')">Sedang: Jogging, renang</div>
-                        <div class="pill" onclick="selectPill('pill-group-olahraga', this); toggleOlahragaField('berat')">Berat: Lari cepat, angkat beban</div>
-                        <div class="pill" onclick="selectPill('pill-group-olahraga', this); toggleOlahragaField('tidak')">Tidak ada olahraga</div>
+                    <div style="text-align: center;">
+                        <span
+                            style="background: #fff3cd; color: #856404; padding: 5px 12px; border-radius: 15px; font-weight: 800; font-size: 0.8rem; display: inline-block; margin-bottom: 15px;">Pola
+                            Makan</span>
+                        <div class="step-icon" style="font-size: 3.5rem; margin-bottom: 15px;">🥩</div>
+                        <h3 class="step-title"
+                            style="font-size: 1.2rem; color: var(--text); text-align: left; margin-bottom: 10px;">
+                            Protein hewani apa saja yang dikonsumsi?</h3>
                     </div>
-                    <div id="olahraga-durasi-container" class="hidden step-animate" style="margin-top: 15px; text-align: left;">
-                        <label style="font-size: 0.9rem; font-weight: 700; color: #555;">Berapa durasi olahraga per minggu?</label>
-                        <input type="text" id="olahraga-durasi" class="custom-input large-text-input" placeholder="Contoh: 30 menit per hari" style="margin-top:10px;">
+
+                    <div class="pill-group" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px;">
+                        <div class="pill toggle-pill" onclick="this.classList.toggle('selected')"
+                            style="flex: 1 1 calc(50% - 5px); font-size:0.9rem;">🐄 Daging Merah</div>
+                        <div class="pill toggle-pill" onclick="this.classList.toggle('selected')"
+                            style="flex: 1 1 calc(50% - 5px); font-size:0.9rem;">🍗 Daging Putih</div>
+                        <div class="pill toggle-pill" onclick="this.classList.toggle('selected')"
+                            style="flex: 1 1 calc(50% - 5px); font-size:0.9rem;">🐟 Seafood</div>
+                        <div class="pill toggle-pill" onclick="this.classList.toggle('selected')"
+                            style="flex: 1 1 calc(50% - 5px); font-size:0.9rem;">🍳 Telur</div>
                     </div>
-                    <div style="display: flex; gap: 10px; margin-top: 20px;">
-                        <button type="button" class="btn-outline" style="margin-top: 0;" onclick="nextStep(3, 2)">Kembali</button>
-                        <button type="button" class="btn-pink" style="margin-top: 0;" onclick="nextStep(3, 4)">Selanjutnya</button>
+
+                    <h3 class="step-title"
+                        style="font-size: 1rem; color: var(--text); text-align: left; margin-bottom: 15px;">Frekuensi
+                        konsumsi protein tersebut?</h3>
+                    <div class="pill-group" id="pill-frek-hewani"
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px;">
+                        <div class="pill" onclick="selectPill('pill-frek-hewani', this)">1-5x</div>
+                        <div class="pill" onclick="selectPill('pill-frek-hewani', this)">6-10x</div>
+                        <div class="pill" onclick="selectPill('pill-frek-hewani', this)">11-15x</div>
+                        <div class="pill" onclick="selectPill('pill-frek-hewani', this)">16-20x</div>
+                    </div>
+
+                    <h3 class="step-title"
+                        style="font-size: 1rem; color: var(--text); text-align: left; margin-bottom: 10px;">Apakah
+                        mengkonsumsi alkohol?</h3>
+                    <div class="pill-group" id="pill-alkohol" style="display: flex; gap: 10px;">
+                        <div class="pill" style="flex: 1; text-align: center;"
+                            onclick="selectPill('pill-alkohol', this)">Ya</div>
+                        <div class="pill" style="flex: 1; text-align: center;"
+                            onclick="selectPill('pill-alkohol', this)">Tidak</div>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; margin-top: 30px;">
+                        <button type="button" class="btn-outline"
+                            style="flex: 1; padding: 16px; border-radius: 15px; margin-top: 0;"
+                            onclick="nextStep(3, 2)">Kembali</button>
+                        <button type="button" class="btn-pink"
+                            style="flex: 2; padding: 16px; border-radius: 15px; box-shadow: 0 5px 15px rgba(255,127,166,0.3); margin-top: 0;"
+                            onclick="nextStep(3, 4)">Selanjutnya</button>
                     </div>
                 </div>
 
+                <!-- Bagian 4: Aktivitas Fisik -->
                 <div id="step-4" class="kuesioner-step step-animate hidden">
-                    <div class="step-icon">💊</div>
-                    <h3 class="step-title">Ada konsumsi obat minggu ini?</h3>
-                    <input type="text" placeholder="Ketik jenis obatnya..." class="custom-input large-text-input">
-                    <p style="font-size:0.8rem; color:#aaa; margin-top:5px;">Kosongkan jika tidak ada.</p>
-                    <div style="display: flex; gap: 10px; margin-top: 20px;">
-                        <button type="button" class="btn-outline" style="margin-top: 0;"
+                    <div style="text-align: center;">
+                        <span
+                            style="background: #e6f9ed; color: #2d5a2d; padding: 5px 12px; border-radius: 15px; font-weight: 800; font-size: 0.8rem; display: inline-block; margin-bottom: 15px;">Aktivitas
+                            Fisik</span>
+                        <div class="step-icon" style="font-size: 3.5rem; margin-bottom: 15px;">🏃‍♀️</div>
+                        <h3 class="step-title"
+                            style="font-size: 1.2rem; color: var(--text); text-align: left; margin-bottom: 10px;">
+                            Aktivitas fisik apa yang dilakukan minggu ini?</h3>
+                    </div>
+
+                    <div class="pill-group-vertical"
+                        style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px;">
+                        <div class="pill toggle-pill"
+                            onclick="handlePillClick(this, false, 'olahraga')"
+                            style="text-align: left; padding: 12px 15px; border-radius: 12px;">🚶‍♀️ Ringan (Jalan kaki,
+                            kerjaan rumah)</div>
+                        <div class="pill toggle-pill"
+                            onclick="handlePillClick(this, false, 'olahraga')"
+                            style="text-align: left; padding: 12px 15px; border-radius: 12px;">🏃‍♀️ Sedang (Jogging,
+                            senam)</div>
+                        <div class="pill toggle-pill"
+                            onclick="handlePillClick(this, false, 'olahraga')"
+                            style="text-align: left; padding: 12px 15px; border-radius: 12px;">🏋️‍♀️ Berat (Angkat
+                            beban, lari cepat)</div>
+                        <div class="pill toggle-pill exclusive-pill"
+                            onclick="handlePillClick(this, true, 'olahraga')"
+                            style="text-align: left; padding: 12px 15px; border-radius: 12px;">❌ Tidak Ada</div>
+                    </div>
+
+                    <div id="durasi-fisik-container" class="hidden step-animate">
+                        <h3 class="step-title"
+                            style="font-size: 1rem; color: var(--text); text-align: left; margin-bottom: 15px;">Berapa
+                            lama aktivitas tersebut dalam seminggu?</h3>
+                        <div class="pill-group-vertical" id="pill-durasi-fisik"
+                            style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px;">
+                            <div class="pill" onclick="selectPill('pill-durasi-fisik', this)"
+                                style="text-align:left; padding: 10px 15px;">Kurang dari 30 menit</div>
+                            <div class="pill" onclick="selectPill('pill-durasi-fisik', this)"
+                                style="text-align:left; padding: 10px 15px;">30 menit - 1 jam</div>
+                            <div class="pill" onclick="selectPill('pill-durasi-fisik', this)"
+                                style="text-align:left; padding: 10px 15px;">1 jam - 2 jam</div>
+                            <div class="pill" onclick="selectPill('pill-durasi-fisik', this)"
+                                style="text-align:left; padding: 10px 15px;">Lebih dari 2 jam</div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; margin-top: 30px;">
+                        <button type="button" class="btn-outline"
+                            style="flex: 1; padding: 16px; border-radius: 15px; margin-top: 0;"
                             onclick="nextStep(4, 3)">Kembali</button>
-                        <button type="button" class="btn-pink" style="margin-top: 0;"
-                            onclick="nextStep(4, 5)">Selanjutnya</button>
+                        <button type="button" class="btn-pink"
+                            style="flex: 2; padding: 16px; border-radius: 15px; box-shadow: 0 5px 15px rgba(255,127,166,0.3); margin-top: 0;"
+                            onclick="submitKuesioner()">Kirim 🚀</button>
                     </div>
                 </div>
 
-                <div id="step-5" class="kuesioner-step step-animate hidden">
-                    <div class="step-icon">🤢</div>
-                    <h3 class="step-title">Apakah ada keluhan Mual/Muntah?</h3>
-                    <div class="pill-group" id="pill-group-mual">
-                        <div class="pill" onclick="selectPill('pill-group-mual', this); toggleMuntahFieldPill('tidak')">
-                            Tidak Ada 😍</div>
-                        <div class="pill border-pink"
-                            onclick="selectPill('pill-group-mual', this); toggleMuntahFieldPill('ya')">Ya, Mual/Muntah
-                            🤢</div>
-                    </div>
-                    <div id="muntah-frekuensi-container" class="hidden step-animate"
-                        style="margin-top: 15px; text-align: left;">
-                        <label style="font-size: 0.9rem; font-weight: 700; color: #555;">Berapa kali muntah dalam
-                            seminggu?</label>
-                        <input type="number" id="muntah-frekuensi" class="custom-input large-text-input"
-                            placeholder="Contoh: 3" style="margin-top:10px;">
-                    </div>
-                    <div style="display: flex; gap: 10px; margin-top: 20px;">
-                        <button type="button" class="btn-outline" style="margin-top: 0;"
-                            onclick="nextStep(5, 4)">Kembali</button>
-                        <button type="button" class="btn-pink" style="margin-top: 0;"
-                            onclick="nextStep(5, 6)">Selanjutnya</button>
-                    </div>
-                </div>
-
-                <div id="step-6" class="kuesioner-step step-animate hidden">
-                    <div class="step-icon">🏠</div>
-                    <h3 class="step-title">Konfirmasi Alamat</h3>
-                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">Apakah alamat Bunda saat ini masih
-                        sama dengan data profil?</p>
-                    <div class="pill-group" id="pill-group-alamat">
-                        <div class="pill" onclick="selectPill('pill-group-alamat', this)">Ya, Masih Sama</div>
-                        <div class="pill" onclick="selectPill('pill-group-alamat', this)">Tidak, Sudah Pindah</div>
-                    </div>
-                    <div style="display: flex; gap: 10px; margin-top: 25px;">
-                        <button type="button" class="btn-outline" style="margin-top: 0;"
-                            onclick="nextStep(6, 5)">Kembali</button>
-                        <button type="button" class="btn-pink" style="margin-top: 0;" onclick="submitKuesioner()">Kirim
-                            Kuesioner 🚀</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
