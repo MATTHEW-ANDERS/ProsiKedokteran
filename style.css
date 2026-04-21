@@ -64,15 +64,66 @@ body {
 
 @media (min-width: 450px) {
     .container-mobile {
-        height: 85vh;
+        <<<<<<< HEAD height: 85vh;
         max-height: 850px;
-        border-radius: 20px;
+        =======height: 90vh;
+        max-height: 90vh;
+        >>>>>>>Jonathan border-radius: 20px;
     }
 
     .header {
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
     }
+
+    <<<<<<< HEAD=======
+
+    /* Optimasi form register untuk desktop - lebih compact */
+    .auth-card {
+        height: 80vh;
+        max-height: 80vh;
+        padding: 20px 18px 15px;
+    }
+
+    .auth-tabs {
+        margin-bottom: 12px;
+    }
+
+    .input-group {
+        margin-bottom: 10px;
+    }
+
+    .input-group label {
+        font-size: 0.8rem;
+        margin-bottom: 4px;
+        font-weight: 600;
+    }
+
+    .input-group input,
+    .input-group select {
+        padding: 9px 12px;
+        font-size: 0.85rem;
+        height: auto;
+    }
+
+    .btn-pink,
+    .btn-outline,
+    .btn-green {
+        padding: 10px;
+        font-size: 0.9rem;
+        margin-top: 8px;
+    }
+
+    /* Override inline styles di form register untuk desktop */
+    #form-register>div:first-child {
+        margin-bottom: 0px !important;
+    }
+
+    #form-register>div:last-child {
+        padding-bottom: 0px !important;
+    }
+
+    >>>>>>>Jonathan
 }
 
 /* ==================== LOGIN / REGISTER ==================== */
@@ -82,8 +133,9 @@ body {
     align-items: center;
     background: linear-gradient(135deg, var(--primary) 0%, #ff527b 100%);
     min-height: 100%;
-    padding-top: 30px;
-    overflow-y: hidden;
+    <<<<<<< HEAD padding-top: 30px;
+    =======padding-top: 20px;
+    >>>>>>>Jonathan overflow-y: hidden;
 }
 
 .login-layout.active {
@@ -95,38 +147,38 @@ body {
     color: white;
     width: 100%;
     flex-shrink: 0;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .login-hero-icon {
-    font-size: 3.5rem;
-    margin-bottom: 5px;
+    font-size: 3rem;
+    margin-bottom: 3px;
 }
 
 .login-hero-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 800;
     margin: 0;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: 0.3s;
 }
 
 .login-hero-desc {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     opacity: 0.9;
-    margin-top: 5px;
+    margin-top: 3px;
     font-weight: 600;
 }
 
 .auth-card {
     background: white;
-    width: 100%;
+    width: 90%;
     max-width: 100%;
     height: 65vh;
-    border-radius: 35px 35px 0 0;
-    padding: 30px 25px 20px;
+    border-radius: 35px;
+    padding: 25px 20px 20px;
     box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.1);
-    margin: 0;
+    margin: 0 0 20px 0;
     display: flex;
     flex-direction: column;
 }
@@ -164,7 +216,7 @@ body {
     background: #f4f4f4;
     border-radius: 18px;
     padding: 6px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     display: flex;
 }
 
@@ -176,7 +228,7 @@ body {
     width: calc(50% - 6px);
     background: white;
     border-radius: 14px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -189,6 +241,7 @@ body {
 
 .auth-form-panel {
     width: 50%;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -200,15 +253,34 @@ body {
 .auth-form-panel.right-panel {
     padding-left: 10px;
     overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+/* Pastikan form content bisa scrollable dengan baik */
+.auth-form-panel.right-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.auth-form-panel.right-panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.auth-form-panel.right-panel::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 3px;
+}
+
+.auth-form-panel.right-panel::-webkit-scrollbar-thumb:hover {
+    background: #bbb;
 }
 
 .tab-btn {
     flex: 1;
-    padding: 12px;
+    padding: 10px;
     border-radius: 12px;
     border: none;
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: 0.2s;
     white-space: nowrap;
@@ -225,26 +297,26 @@ body {
 }
 
 .input-group {
-    margin-bottom: 18px;
+    margin-bottom: 12px;
     text-align: left;
 }
 
 .input-group label {
     color: var(--gray-text);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     display: block;
 }
 
 .input-group input,
 .input-group select {
     width: 100%;
-    padding: 12px 15px;
+    padding: 10px 12px;
     border: 1px solid #eee;
     border-radius: 12px;
     outline: none;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
 }
 
@@ -254,39 +326,39 @@ body {
 
 .btn-pink {
     width: 100%;
-    padding: 14px;
+    padding: 12px;
     background-color: var(--primary);
     color: white;
     border: none;
     border-radius: 12px;
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 800;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .btn-outline {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     background: transparent;
     border: 2px solid var(--primary);
     color: var(--primary);
     border-radius: 10px;
     font-weight: 800;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .btn-green {
     background: var(--secondary);
     color: #2d5a2d;
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     border: none;
     border-radius: 10px;
     font-weight: 800;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 /* ==================== UI KONTEN MOBILE ==================== */
@@ -857,9 +929,17 @@ body {
 
 /* ==================== ANIMASI GAMIFIKASI ==================== */
 @keyframes pulseBreathe {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 #flower-emoji {

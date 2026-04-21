@@ -61,7 +61,7 @@ function startKuesioner() {
 
     // Reset progress bar
     const progressBar = document.getElementById('kuesioner-progress');
-    if (progressBar) progressBar.style.width = '20%';
+    if (progressBar) progressBar.style.width = '25%';
 }
 
 function nextStep(current, next) {
@@ -71,7 +71,7 @@ function nextStep(current, next) {
 
     // Update progress bar
     const progressBar = document.getElementById('kuesioner-progress');
-    if (progressBar) progressBar.style.width = (next / 5 * 100) + '%';
+    if (progressBar) progressBar.style.width = (next / 4 * 100) + '%';
 }
 
 function selectPill(groupId, element) {
@@ -86,6 +86,53 @@ function toggleMuntahFieldPill(value) {
         container.classList.remove('hidden');
     } else {
         container.classList.add('hidden');
+    }
+}
+
+function toggleOlahragaDurasi(show) {
+    const container = document.getElementById('durasi-fisik-container');
+    if (show) {
+        container.classList.remove('hidden');
+    } else {
+        container.classList.add('hidden');
+    }
+}
+
+function handlePillClick(element, isExclusive, groupType) {
+    const groupElement = element.parentNode;
+    const exclusiveOption = groupElement.querySelector('.exclusive-pill');
+
+    if (isExclusive) {
+        // Jika opsi "Tidak Ada/Keduanya" dipencet
+        if (!element.classList.contains('selected')) {
+            // Berarti akan mengaktifkan eksklusif: matikan semua opsi lain
+            Array.from(groupElement.children).forEach(child => {
+                if (child !== element) {
+                    child.classList.remove('selected');
+                }
+            });
+            element.classList.add('selected');
+        } else {
+            // Matikan opsi eksklusif
+            element.classList.remove('selected');
+        }
+    } else {
+        // Cek dulu apakah opsi eksklusif sedang menyala
+        if (exclusiveOption && exclusiveOption.classList.contains('selected')) {
+            // Opsi "Tidak Ada" sedang hidup, maka opsi lain tidak bisa dipencet
+            return;
+        }
+
+        // Pilihan normal
+        element.classList.toggle('selected');
+    }
+
+    // Pengecekan tambahan khusus Aktivitas Fisik (Pola Makan bisa diabaikan/gak ada ngaruh ke sini)
+    if (groupType === 'olahraga') {
+        const anySelectedRegular = Array.from(groupElement.children).some(child =>
+            child !== exclusiveOption && child.classList.contains('selected')
+        );
+        toggleOlahragaDurasi(anySelectedRegular);
     }
 }
 
@@ -131,7 +178,7 @@ function submitKuesioner() {
     `;
     riwayatList.insertBefore(riwayatItem, riwayatList.firstChild);
 
-    document.getElementById('step-5').classList.add('hidden');
+    document.getElementById('step-4').classList.add('hidden');
     switchView('dashboard-user');
 }
 
