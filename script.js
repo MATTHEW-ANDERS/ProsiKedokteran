@@ -211,7 +211,7 @@ function toggleAuthMode(mode) {
         btnReg.style.color = '#888';
         title.innerText = 'Sayang Bunda';
     } else {
-        slider.style.transform = 'translateX(calc(100% + 12px))';
+        slider.style.transform = 'translateX(100%)';
         container.style.transform = 'translateX(-50%)';
         btnReg.style.color = 'var(--primary)';
         btnLogin.style.color = '#888';

@@ -64,19 +64,17 @@ body {
 
 @media (min-width: 450px) {
     .container-mobile {
-        <<<<<<< HEAD height: 85vh;
+        height: 85vh;
         max-height: 850px;
-        =======height: 90vh;
+        height: 90vh;
         max-height: 90vh;
-        >>>>>>>Jonathan border-radius: 20px;
+        border-radius: 20px;
     }
 
     .header {
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
     }
-
-    <<<<<<< HEAD=======
 
     /* Optimasi form register untuk desktop - lebih compact */
     .auth-card {
@@ -122,8 +120,6 @@ body {
     #form-register>div:last-child {
         padding-bottom: 0px !important;
     }
-
-    >>>>>>>Jonathan
 }
 
 /* ==================== LOGIN / REGISTER ==================== */
@@ -133,9 +129,9 @@ body {
     align-items: center;
     background: linear-gradient(135deg, var(--primary) 0%, #ff527b 100%);
     min-height: 100%;
-    <<<<<<< HEAD padding-top: 30px;
-    =======padding-top: 20px;
-    >>>>>>>Jonathan overflow-y: hidden;
+    padding-top: 30px;
+    padding-top: 20px;
+    overflow-y: hidden;
 }
 
 .login-layout.active {
